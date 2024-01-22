@@ -1,0 +1,650 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: en-US\n"
+
+msgid "ACCOUNT_LOGIN_PAGE_TITLE"
+msgstr "Войти в систему"
+
+msgid "ACCOUNT_LOGIN_USERNAME_LABEL"
+msgstr "Имя пользователя"
+
+msgid "ACCOUNT_LOGIN_PASSWORD_LABEL"
+msgstr "Пароль"
+
+msgid "ACCOUNT_LOGIN_BUTTON_TEXT"
+msgstr "Войти"
+
+msgid "RECALCULATE_INVOICE_LOAD_BUTTON_TEXT"
+msgstr "Импортировать"
+
+msgid "RECALCULATE_LIST_PAGE_TITLE"
+msgstr "Пересчитать список счетов"
+
+msgid "RECALCULATE_LIST_INVOICE_NUMBER"
+msgstr "Invoice Number"
+
+
+msgid "RECALCULATE_LIST_STATUS"
+msgstr "Status"
+
+
+msgid "RECALCULATE_LIST_ERROR"
+msgstr "Error"
+
+
+msgid "ACCOUNT_PROFILE_PAGE_TITLE"
+msgstr "Мой профиль"
+
+msgid "ACT_LIST_PAGE_TITLE"
+msgstr "Мои акты"
+
+msgid "ACT_APPROVAL_PAGE_TITLE"
+msgstr "Мои подтверждения"
+
+msgid "ACT_LIST_NUMBER"
+msgstr "Номер акта"
+
+msgid "ACT_LIST_STATUS"
+msgstr "Статус"
+
+msgid "ACT_LIST_RECEIVER"
+msgstr "Получатель"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Создатель"
+
+msgid "ACT_VIEW_INVOICE_COUNT"
+msgstr "Hesabların sayı"
+
+msgid "ACT_LIST_CREATE_DATE"
+msgstr "Дата создания"
+
+msgid "ACT_LIST_EXPORT_EXCEL_BUTTON_TEXT"
+msgstr "Експорт эксель"
+
+msgid "ACT_LIST_PAYOUT_DATE"
+msgstr "Дата выплаты"
+
+msgid "ACT_LIST_POLICY"
+msgstr "ACT_LIST_POLICY"
+
+msgid "ACT_LIST_AMOUNT"
+msgstr "Сумма"
+
+msgid "LIST_POLICY"
+msgstr "Policy number"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Создатель"
+
+msgid "ACT_LIST_APPROVAL_DATE"
+msgstr "Дата подтверждения"
+
+msgid "ACT_VIEW_PAGE_TITLE"
+msgstr "Детали акта"
+
+msgid "ACT_VIEW_SAVE"
+msgstr "Сохранить заготовку"
+
+msgid "ACT_VIEW_SEND"
+msgstr "Отослать"
+
+msgid "ACT_VIEW_APPROVE"
+msgstr "Подтвердить"
+
+msgid "ACT_VIEW_REJECT"
+msgstr "Отклонить"
+
+msgid "ACT_VIEW_CANCEL"
+msgstr "Аннулировать"
+
+msgid "ACT_VIEW_PRINT"
+msgstr "Распечатать"
+
+msgid "ACT_VIEW_NUMBER"
+msgstr "Номер акта"
+
+msgid "ACT_VIEW_STATUS"
+msgstr "Статус"
+
+msgid "ACT_VIEW_CREATOR"
+msgstr "Создатель"
+
+msgid "ACT_VIEW_CREATE_DATE"
+msgstr "Дата создания"
+
+msgid "ACT_VIEW_COMMISSION"
+msgstr "Сумма комиссии"
+
+msgid "ACT_VIEW_RECEIVER"
+msgstr "Получатель"
+
+msgid "ACT_VIEW_APPROVALS"
+msgstr "Подтверждения"
+
+msgid "COMMISSION_LIST_PAGE_TITLE"
+msgstr "Список комиссий"
+
+msgid "COMMISSION_LIST_SAVE"
+msgstr "Сохранить"
+
+msgid "COMMISSION_LIST_ACT_TYPE"
+msgstr "Тип акта"
+
+msgid "COMMISSION_LIST_PAYOUT_TYPE"
+msgstr "Способ выплаты"
+
+msgid "COMMISSION_LIST_PRODUCT"
+msgstr "Продукт"
+
+msgid "COMMISSION_LIST_BRAND"
+msgstr "Марка"
+
+msgid "COMMISSION_LIST_POLICY_HOLDER_TYPE"
+msgstr "Тип страхователя"
+
+msgid "COMMISSION_LIST_USERNAME"
+msgstr "Агент"
+
+msgid "COMMISSION_LIST_BENEFICIARY_CODE"
+msgstr "Выгодопр."
+
+msgid "COMMISSION_LIST_AMOUNT_FIXED"
+msgstr "Фиксированная сумма"
+
+msgid "COMMISSION_LIST_AMOUNT_PERCENT"
+msgstr "Процент"
+
+msgid "COMMISSION_LIST_AMOUNT_MIN"
+msgstr "Минимальная сумма"
+
+msgid "COMMISSION_LIST_AMOUNT_MAX"
+msgstr "Максимальная сумма"
+
+msgid "COMMISSION_LIST_FORM_WARNING"
+msgstr "Чтобы поменять фильрт, заполните все обязательные поля"
+
+msgid "INVOICE_LIST_PAGE_TITLE"
+msgstr "Список инвойсов"
+
+msgid "INVOICE_SECONDARY_LIST_PAGE_TITLE"
+msgstr "Список инвойсов (2-ой уровень)"
+
+msgid "INVOICE_LIST_SYNC_BUTTON_TEXT"
+msgstr "Синхронизировать"
+
+msgid "INVOICE_LIST_CREATE_BUTTON_TEXT"
+msgstr "Создать акт"
+
+msgid "INVOICE_LIST_ADD_BUTTON_TEXT"
+msgstr "Добавить в существующий акт"
+
+msgid "HIDE_SELECTED_COMISSIONFREE_INVOICES_BUTTON_TEXT"
+msgstr "Hide Co-Free invoice"
+
+msgid "INVOICE_LIST_ADD_ACT_NUMBER"
+msgstr "Номер акта"
+
+msgid "INVOICE_LIST_ADD_ACT_BUTTON_TEXT"
+msgstr "Добавить"
+
+msgid "INVOICE_LIST_SELECT_BUTTON_TEXT"
+msgstr "Выбрать все"
+
+msgid "PAYOUT_LIST_PAGE_TITLE"
+msgstr "Мои выплаты"
+
+msgid "PAYOUT_LIST_PAY_BUTTON_TEXT"
+msgstr "Выплатить"
+
+msgid "PAYOUT_LIST_BANK_FILE_BUTTON_TEXT"
+msgstr "Экспорт банковских платежей"
+
+msgid "PAYOUT_LIST_START_EXPORT_BUTTON_TEXT"
+msgstr "Создать файл"
+
+msgid "PAYOUT_LIST_CONFIRM_EXPORT_BUTTON_TEXT"
+msgstr "Отметить как выплачен"
+
+msgid "PAYOUT_LIST_ACT_NUMBER"
+msgstr "Номер акта"
+
+msgid "PAYOUT_LIST_TYPE"
+msgstr "Способ выплаты"
+
+msgid "PAYOUT_LIST_AMOUNT"
+msgstr "Сумма"
+
+msgid "PAYOUTS_NOT_FOUND"
+msgstr "Нет выплат для экспорта"
+
+msgid "PAYOUT_LIST_PAY_DATE"
+msgstr "Дата выплаты"
+
+msgid "INVOICE_LIST_NUMBER"
+msgstr "Номер инвойса"
+
+msgid "INVOICE_LIST_POLICY_NUMBER"
+msgstr "Номер полиса"
+
+msgid "INVOICE_LIST_POLICY_HOLDER"
+msgstr "Страхователь"
+
+msgid "INVOICE_LIST_AGENT"
+msgstr "Агент"
+
+msgid "INVOICE_LIST_COMMISSION"
+msgstr "Комиссия"
+
+msgid "INVOICE_LIST_PREMIUM"
+msgstr "Премия"
+
+msgid "INVOICE_LIST_TOTAL_COMMISSION"
+msgstr "Полная комиссия"
+
+msgid "INVOICE_LIST_PAID_COMMISSION"
+msgstr "Выплаченная комиссия"
+
+msgid "INVOICE_LIST_UNPAID_COMMISSION"
+msgstr "Невыплаченная комиссия"
+
+msgid "INVOICE_LIST_PRODUCT"
+msgstr "Продукт"
+
+msgid "INVOICE_LIST_PAYOUT_TYPE"
+msgstr "Тип выплаты"
+
+msgid "INVOICE_LIST_BRAND"
+msgstr "Марка"
+
+msgid "INVOICE_LIST_BENEFICIARY"
+msgstr "Выгодоприобретатель"
+
+msgid "INVOICE_LIST_PAYABLE_PREMIUM"
+msgstr "Премия к оплате"
+
+msgid "INVOICE_LIST_PAID_PREMIUM"
+msgstr "Оплаченная премия"
+
+msgid "INVOICE_LIST_UNPAID_PREMIUM"
+msgstr "Неоплаченная премия"
+
+msgid "INVOICE_LIST_WITHHELD_COMMISSION"
+msgstr "Удержанная комиссия"
+
+msgid "INVOICE_LIST_STATUS"
+msgstr "Статус"
+
+msgid "INVOICE_LIST_MEDIATOR"
+msgstr "Агент"
+
+msgid "INVOICE_LIST_CREATE_DATE"
+msgstr "Дата выдачи"
+
+msgid "INVOICE_LIST_PAY_DATE"
+msgstr "Дата оплаты"
+
+msgid "COMMISSION_LIST_VALID_FROM_TO"
+msgstr "Valid from-to"
+
+msgid "COMMISSION_LIST_PREMIUM_FROM_TO"
+msgstr "Premium from-to"
+
+msgid "COMMISSION_LIST_PREMIUM_FROM"
+msgstr "Premium from"
+
+msgid "COMMISSION_LIST_PREMIUM_TO"
+msgstr "Premium to"
+
+msgid "VEHICLETYPE_BUS"
+msgstr "Bus"
+
+msgid "VEHICLETYPE_TRUCK"
+msgstr "Truck"
+
+msgid "VEHICLETYPE_PASSENGER"
+msgstr "Passenger"
+
+msgid "VEHICLETYPE_MOTORCYCLE"
+msgstr "Motorcycle"
+
+msgid "VEHICLETYPE_TRAILER"
+msgstr "Trailer"
+
+msgid "VEHICLETYPE_SPECIALIZED"
+msgstr "Specialized"
+
+msgid "VEHICLETYPE_ELECTRICCAR"
+msgstr "Electric Car"
+
+msgid "COMMISSION_LIST_VEHICLE_TYPE"
+msgstr "Vehicle type"
+
+msgid "COMMISSION_LIST_ENGINE_FROM"
+msgstr "Engine from"
+
+msgid "COMMISSION_LIST_ENGINE_TO"
+msgstr "Engine to"
+
+msgid "COMMISSION_LIST_ENGINE_FROM_TO"
+msgstr "Engine from-to"
+
+msgid "ACT_VIEW_TOTAL_PREMIUM"
+msgstr "Total premium"
+
+msgid "ACCOUNT_LOGOUT"
+msgstr "Выйти"
+
+msgid "LAYOUT_COPYRIGHT_TEXT"
+msgstr "Атешгях"
+
+msgid "USER_LIST_PAGE_TITLE"
+msgstr "Список пользователей"
+
+msgid "USER_LIST_USERNAME"
+msgstr "Имя пользователя"
+
+msgid "USER_LIST_NAME"
+msgstr "Имя"
+
+msgid "USER_LIST_SURNAME"
+msgstr "Фамилия"
+
+msgid "USER_PROFILE_PAGE_TITLE"
+msgstr "Профиль пользователя"
+
+msgid "USER_PROFILE_SAVE"
+msgstr "Созранить"
+
+msgid "USER_PROFILE_DATA"
+msgstr "Основные данные"
+
+msgid "USER_PROFILE_PERMISSIONS"
+msgstr "Права"
+
+msgid "USER_PROFILE_USERNAME"
+msgstr "Имя пользователя"
+
+msgid "USER_PROFILE_NAME"
+msgstr "Имя"
+
+msgid "USER_PROFILE_SURNAME"
+msgstr "Фамилия"
+
+msgid "ACT_TYPE_FORBIDDEN"
+msgstr "Тип акта недоступен"
+
+msgid "INVALID_STATE"
+msgstr "Акт в неправильном состоянии"
+
+msgid "CUSTOM_COMMISSION_FORBIDDEN"
+msgstr "Редактирование комиссий запрещено"
+
+msgid "ACT_NOT_FOUND"
+msgstr "Акт не найден"
+
+msgid "HIDDEN_INVOICE_MUSTBE_COMISSION_FREE"
+msgstr "Chosen invoices must be comission free"
+
+msgid "INVOICE_HIDED"
+msgstr "Choosen commission free invoices removed."
+
+msgid "ACT_APPROVAL_INVALID"
+msgstr "Акт невозможно подтвердить"
+
+msgid "ACT_APPROVAL_UNDERWRITER"
+msgstr "Андеррайтер"
+
+msgid "ACT_STATUS_INVALID"
+msgstr "Статус акта в неправильном состоянии"
+
+msgid "ACT_CREATOR_ACTION"
+msgstr "Создатель акта должен ялаться текущим пользователем"
+
+msgid "ACT_IS_PAID"
+msgstr "Акт оплачен"
+
+msgid "ACT_HAS_APPROVAL"
+msgstr "Act already approved"
+
+msgid "DUPLICATE_COMMISSIONS"
+msgstr "Содержатся дубликаты в некоторых записях"
+
+msgid "COMMISSIONS_SAVED"
+msgstr "Комиссии сохранены"
+
+msgid "ACCOUNT_LOGIN_INVALID"
+msgstr "Неверное имя пользователя или пароль"
+
+msgid "USER_NOT_FOUND"
+msgstr "Пользователь не найден"
+
+msgid "USER_SAVED"
+msgstr "Данные пользователя сохранены"
+
+msgid "ACTTYPE_PRIMARY"
+msgstr "Стандартный"
+
+msgid "ACTTYPE_SECONDARY"
+msgstr "Второго уровня"
+
+msgid "PAYOUTTYPE_BANK"
+msgstr "Банк"
+
+msgid "PAYOUTTYPE_CASH"
+msgstr "Наличные"
+
+msgid "PAYOUTTYPE_CUSTOM"
+msgstr "Чёрная касса"
+
+msgid "PRODUCT_CMTPL"
+msgstr "ОСАГО"
+
+msgid "PRODUCT_HOUSEHOLD"
+msgstr "Имущество"
+
+msgid "PRODUCT_MOD"
+msgstr "КАСКО"
+
+msgid "PERSONTYPE_PHYSICAL"
+msgstr "Физический"
+
+msgid "PERSONTYPE_LEGAL"
+msgstr "Юридический"
+
+msgid "ACTSTATUS_DRAFT"
+msgstr "Заготовка"
+
+msgid "ACTSTATUS_SENT"
+msgstr "Ждёт подтверждения"
+
+msgid "ACTSTATUS_CANCELLED"
+msgstr "Аннулирован"
+
+msgid "ACTSTATUS_REJECTED"
+msgstr "Отклонён"
+
+msgid "ACTSTATUS_APPROVED"
+msgstr "Подтверждён"
+
+msgid "ACTSTATUS_PAID"
+msgstr "Оплачен"
+
+msgid "INVOICESTATUS_PAID"
+msgstr "Оплачен"
+
+msgid "INVOICESTATUS_PARTIALLYPAID"
+msgstr "Частично оплачен"
+
+msgid "ACT_VIEW_INSURER"
+msgstr "Insurer"
+
+msgid "ACT_VIEW_BROKER"
+msgstr "Broker"
+
+msgid "INSURER_ATESHGAH"
+msgstr "“Atəşgah” Sığorta Şirkəti ASC"
+
+msgid "INSURER_ATESHGAHLIFE"
+msgstr "“Atəşgah Həyat” Sığorta Şirkəti ASC"
+
+msgid "PRODUCT_VESSELS"
+msgstr "DənizNV"
+
+msgid "PRODUCT_CARGO"
+msgstr "Yük"
+
+msgid "PRODUCT_KASKOCOMBI"
+msgstr "KASKOCombi"
+
+msgid "PRODUCT_BANKCASCO"
+msgstr "KASKOBank"
+
+msgid "PRODUCT_AGENTKASKO"
+msgstr "KASKORetail"
+
+msgid "PRODUCT_NVMMIS"
+msgstr "NVSMMİS"
+
+msgid "PRODUCT_MTPL_5"
+msgstr "KASKOBeşlik"
+
+msgid "PRODUCT_MTPL_SUPERK"
+msgstr "KASKOSuper"
+
+msgid "PRODUCT_MTPL_SARI"
+msgstr "Sarı"
+
+msgid "PRODUCT_MTPL_NARINCI"
+msgstr "Narıncı"
+
+msgid "PRODUCT_IFQ"
+msgstr "İcbariFQ"
+
+msgid "PRODUCT_TRAVEL"
+msgstr "Səfər"
+
+msgid "PRODUCT_PROPERTY"
+msgstr "Əmlak İcbari"
+
+msgid "PRODUCT_PROPLIAB"
+msgstr "ƏmlakTPL İcbari"
+
+msgid "PRODUCT_FA"
+msgstr "Könüllü Əmlak"
+
+msgid "PRODUCT_MI"
+msgstr "KASKO"
+
+msgid "PRODUCT_PA"
+msgstr "FQ"
+
+msgid "PRODUCT_CA"
+msgstr "AuditTPL"
+
+msgid "PRODUCT_PM"
+msgstr "MaşınAvadanlıq"
+
+msgid "PRODUCT_LC"
+msgstr "Məsuliyyət"
+
+msgid "PRODUCT_CAR"
+msgstr "TikintiMontaj"
+
+msgid "PRODUCT_CE"
+msgstr "MəsuliyyətEKO"
+
+msgid "PRODUCT_LA"
+msgstr "HəyatOnline"
+
+msgid "PRODUCT_TS"
+msgstr "Tibbi"
+
+msgid "PRODUCT_TRAVELIMPORT"
+msgstr "Səfər (Import)"
+
+msgid "PRODUCT_MA"
+msgstr "Həyatİpoteka"
+
+msgid "PRODUCT_EA"
+msgstr "HəyatYığım"
+
+msgid "PRODUCT_RT_PAT"
+msgstr "KASKOİcbariPlus"
+
+msgid "PRODUCT_GC"
+msgstr "NVSMMİSYaşıl"
+
+msgid "PRODUCT_FM"
+msgstr "Əmlakİpoteka"
+
+msgid "PRODUCT_LEP"
+msgstr "İŞİtirilməsi"
+
+msgid "PRODUCT_SMLX"
+msgstr "KASKOButik"
+
+msgid "PRODUCT_MINIRETAILCASCO"
+msgstr "Bölgəm"
+
+
+msgid "COMISSIONCHANGE_LIST_PAGE"
+msgstr "Изменение комиссии"
+
+msgid "SEARCH"
+msgstr "Поиск"
+
+msgid "START_DATE"
+msgstr "Дата начала"
+
+msgid "END_DATE"
+msgstr "Дата окончания"
+
+msgid "CREATE_ACT"
+msgstr "Создать акт"
+
+msgid "ACTTYPE_USERCOMISSION"
+msgstr "Комиссия пользователя"
+
+msgid "PRODUCT_NSPLUS"
+msgstr "NSPlus"
+
+msgid "PRODUCT_Arxayin_Qonsu"
+msgstr "ArxayınQonşu"
+
+msgid "PRODUCT_Antikoronavirus"
+msgstr "Antikoronavirus"
+
+msgid "PRODUCT_YuzYasha"
+msgstr "YüzYaşa"
+
+msgid "PRODUCT_RentaCar"
+msgstr "RentaCar"
+
+msgid "PRODUCT_CMR"
+msgstr "CMR"
+
+msgid "PRODUCT_TermLife"
+msgstr "MüddətliHəyat"
+
+msgid "SURE_TO_HIDE_INVOICES_TEXT"
+msgstr "Are you sure to hide selected Co-Free invoice?"
+
+msgid "COMMISSION_DUPLICATE_ERROR"
+msgstr "Commission with duplicate value cannot be created"
+
+msgid "CANCEL_BUTTON_TEXT"
+msgstr "Отменить"
+
+msgid "HIDE_BUTTON_TEXT"
+msgstr "Спрятать"

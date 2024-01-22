@@ -1,0 +1,419 @@
+msgid ""
+msgstr ""
+Content-Type: text/plain; charset=UTF-8\n
+Content-Transfer-Encoding: 8bit\n
+Project-Id-Version: \n
+
+msgid "ACCOUNT_LOGIN_PAGE_TITLE"
+msgstr "Please log in"
+
+msgid "ACCOUNT_LOGIN_USERNAME_LABEL"
+msgstr "Username"
+
+msgid "ACCOUNT_LOGIN_PASSWORD_LABEL"
+msgstr "Password"
+
+msgid "ACCOUNT_LOGIN_BUTTON_TEXT"
+msgstr "Login"
+
+msgid "ACCOUNT_PROFILE_PAGE_TITLE"
+msgstr "My profile"
+
+msgid "ACT_LIST_PAGE_TITLE"
+msgstr "My act list"
+
+msgid "ACT_APPROVAL_PAGE_TITLE"
+msgstr "My approvals"
+
+msgid "ACT_LIST_NUMBER"
+msgstr "Act number"
+
+msgid "ACT_LIST_STATUS"
+msgstr "Status"
+
+msgid "ACT_LIST_RECEIVER"
+msgstr "Receiver"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_LIST_CREATE_DATE"
+msgstr "Create date"
+
+msgid "ACT_LIST_PAYOUT_DATE"
+msgstr "Payout date"
+
+msgid "ACT_LIST_POLICY"
+msgstr "Policy number"
+
+msgid "ACT_LIST_AMOUNT"
+msgstr "Amount"
+
+msgid "LIST_POLICY"
+msgstr "Policy number"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_LIST_APPROVAL_DATE"
+msgstr "Approval date"
+
+msgid "ACT_VIEW_PAGE_TITLE"
+msgstr "Act details"
+
+msgid "ACT_VIEW_SAVE"
+msgstr "Save draft"
+
+msgid "ACT_VIEW_SEND"
+msgstr "Send"
+
+msgid "ACT_VIEW_APPROVE"
+msgstr "Approve"
+
+msgid "ACT_VIEW_REJECT"
+msgstr "Reject"
+
+msgid "ACT_VIEW_CANCEL"
+msgstr "Cancel"
+
+msgid "ACT_VIEW_PRINT"
+msgstr "Print"
+
+msgid "ACT_VIEW_NUMBER"
+msgstr "Act number"
+
+msgid "ACT_VIEW_STATUS"
+msgstr "Status"
+
+msgid "ACT_VIEW_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_VIEW_CREATE_DATE"
+msgstr "Create date"
+
+msgid "ACT_VIEW_COMMISSION"
+msgstr "Commission amount"
+
+msgid "ACT_VIEW_RECEIVER"
+msgstr "Receiver"
+
+msgid "ACT_VIEW_APPROVALS"
+msgstr "Act approvals"
+
+msgid "COMMISSION_LIST_PAGE_TITLE"
+msgstr "Commission list"
+
+msgid "COMMISSION_LIST_SAVE"
+msgstr "Save"
+
+msgid "COMMISSION_LIST_ACT_TYPE"
+msgstr "Act type"
+
+msgid "COMMISSION_LIST_PAYOUT_TYPE"
+msgstr "Payout type"
+
+msgid "COMMISSION_LIST_PRODUCT"
+msgstr "Product"
+
+msgid "COMMISSION_LIST_BRAND"
+msgstr "Brand"
+
+msgid "COMMISSION_LIST_POLICY_HOLDER_TYPE"
+msgstr "Policy holder type"
+
+msgid "COMMISSION_LIST_USERNAME"
+msgstr "Agent"
+
+msgid "COMMISSION_LIST_BENEFICIARY_CODE"
+msgstr "Beneficiary"
+
+msgid "COMMISSION_LIST_AMOUNT_FIXED"
+msgstr "Amount fixed"
+
+msgid "COMMISSION_LIST_AMOUNT_PERCENT"
+msgstr "Amount percent"
+
+msgid "COMMISSION_LIST_AMOUNT_MIN"
+msgstr "Minimum amount"
+
+msgid "COMMISSION_LIST_AMOUNT_MAX"
+msgstr "Maximum amount"
+
+msgid "COMMISSION_LIST_FORM_WARNING"
+msgstr "To change filter fill in all required fields"
+
+msgid "INVOICE_LIST_PAGE_TITLE"
+msgstr "Invoice list"
+
+msgid "INVOICE_SECONDARY_LIST_PAGE_TITLE"
+msgstr "Invoice 2nd level list"
+
+msgid "INVOICE_LIST_SYNC_BUTTON_TEXT"
+msgstr "Syncronize"
+
+msgid "INVOICE_LIST_CREATE_BUTTON_TEXT"
+msgstr "Create act"
+
+msgid "INVOICE_LIST_ADD_BUTTON_TEXT"
+msgstr "Add to existing act"
+
+msgid "HIDE_SELECTED_COMISSIONFREE_INVOICES_BUTTON_TEXT"
+msgstr "Hide Co-Free invoice"
+
+msgid "INVOICE_LIST_ADD_ACT_NUMBER"
+msgstr "Act number"
+
+msgid "INVOICE_LIST_ADD_ACT_BUTTON_TEXT"
+msgstr "Add"
+
+msgid "INVOICE_LIST_SELECT_BUTTON_TEXT"
+msgstr "Select all"
+
+msgid "PAYOUT_LIST_PAGE_TITLE"
+msgstr "My payouts"
+
+msgid "PAYOUT_LIST_PAY_BUTTON_TEXT"
+msgstr "Make payout"
+
+msgid "PAYOUT_LIST_BANK_FILE_BUTTON_TEXT"
+msgstr "Export bank file"
+
+msgid "PAYOUT_LIST_START_EXPORT_BUTTON_TEXT"
+msgstr "Create file"
+
+msgid "PAYOUT_LIST_CONFIRM_EXPORT_BUTTON_TEXT"
+msgstr "Mark as paid"
+
+msgid "PAYOUT_LIST_ACT_NUMBER"
+msgstr "Act number"
+
+msgid "PAYOUT_LIST_TYPE"
+msgstr "Payout type"
+
+msgid "PAYOUT_LIST_AMOUNT"
+msgstr "Amount"
+
+msgid "PAYOUT_LIST_PAY_DATE"
+msgstr "Payout date"
+
+msgid "PAYOUTS_NOT_FOUND"
+msgstr "No payouts to export"
+
+msgid "INVOICE_LIST_NUMBER"
+msgstr "Invoice number"
+
+msgid "INVOICE_LIST_POLICY_NUMBER"
+msgstr "Policy number"
+
+msgid "INVOICE_LIST_POLICY_HOLDER"
+msgstr "Policy holder"
+
+msgid "INVOICE_LIST_AGENT"
+msgstr "Agent"
+
+msgid "INVOICE_LIST_COMMISSION"
+msgstr "Commission"
+
+msgid "INVOICE_LIST_PREMIUM"
+msgstr "Premium"
+
+msgid "INVOICE_LIST_TOTAL_COMMISSION"
+msgstr "Total commission"
+
+msgid "INVOICE_LIST_PAID_COMMISSION"
+msgstr "Paid commission"
+
+msgid "INVOICE_LIST_UNPAID_COMMISSION"
+msgstr "Unpaid commission"
+
+msgid "INVOICE_LIST_PRODUCT"
+msgstr "Product"
+
+msgid "INVOICE_LIST_PAYOUT_TYPE"
+msgstr "Payout type"
+
+msgid "INVOICE_LIST_BRAND"
+msgstr "Brand"
+
+msgid "INVOICE_LIST_BENEFICIARY"
+msgstr "Beneficiary"
+
+msgid "INVOICE_LIST_PAYABLE_PREMIUM"
+msgstr "Payable premium"
+
+msgid "INVOICE_LIST_PAID_PREMIUM"
+msgstr "Premium paid"
+
+msgid "INVOICE_LIST_UNAID_PREMIUM"
+msgstr "Unpaid premium"
+
+msgid "INVOICE_LIST_WITHHELD_COMMISSION"
+msgstr "Withheld commission"
+
+msgid "INVOICE_LIST_STATUS"
+msgstr "Status"
+
+msgid "INVOICE_LIST_MEDIATOR"
+msgstr "Agent"
+
+msgid "INVOICE_LIST_CREATE_DATE"
+msgstr "Issue date"
+
+msgid "INVOICE_LIST_PAY_DATE"
+msgstr "Pay date"
+
+msgid "ACCOUNT_LOGOUT"
+msgstr "Log out"
+
+msgid "LAYOUT_COPYRIGHT_TEXT"
+msgstr "Ateshgah"
+
+msgid "USER_LIST_PAGE_TITLE"
+msgstr "User list"
+
+msgid "USER_LIST_USERNAME"
+msgstr "Username"
+
+msgid "USER_LIST_NAME"
+msgstr "First name"
+
+msgid "USER_LIST_SURNAME"
+msgstr "Last name"
+
+msgid "USER_PROFILE_PAGE_TITLE"
+msgstr "User profile"
+
+msgid "USER_PROFILE_SAVE"
+msgstr "Save"
+
+msgid "USER_PROFILE_DATA"
+msgstr "Main data"
+
+msgid "USER_PROFILE_PERMISSIONS"
+msgstr "Permissions"
+
+msgid "USER_PROFILE_USERNAME"
+msgstr "Username"
+
+msgid "USER_PROFILE_NAME"
+msgstr "First name"
+
+msgid "USER_PROFILE_SURNAME"
+msgstr "Last name"
+
+msgid "ACT_TYPE_FORBIDDEN"
+msgstr "Act type is forbidden"
+
+msgid "INVALID_STATE"
+msgstr "Invalid act state"
+
+msgid "CUSTOM_COMMISSION_FORBIDDEN"
+msgstr "Custom commission is forbidden"
+
+msgid "ACT_NOT_FOUND"
+msgstr "Act is not found"
+
+msgid "HIDDEN_INVOICE_MUSTBE_COMISSION_FREE"
+msgstr "Chosen invoices must be comission free"
+
+msgid "INVOICE_HIDED"
+msgstr "Choosen commission free invoices removed."
+
+msgid "ACT_APPROVAL_INVALID"
+msgstr "Act approval is invalid"
+
+msgid "ACT_APPROVAL_UNDERWRITER"
+msgstr "Underwriter"
+
+msgid "ACT_STATUS_INVALID"
+msgstr "Act status is invalid"
+
+msgid "ACT_CREATOR_ACTION"
+msgstr "Act creator is not current user"
+
+msgid "ACT_IS_PAID"
+msgstr "Act is paid"
+
+msgid "ACT_HAS_APPROVAL"
+msgstr "Act already approved"
+
+msgid "DUPLICATE_COMMISSIONS"
+msgstr "Some commissions are duplicated"
+
+msgid "COMMISSIONS_SAVED"
+msgstr "Commission have been saved"
+
+msgid "ACCOUNT_LOGIN_INVALID"
+msgstr "Invalid username or password"
+
+msgid "USER_NOT_FOUND"
+msgstr "User is not found"
+
+msgid "USER_SAVED"
+msgstr "User has been saved"
+
+msgid "ACTTYPE_PRIMARY"
+msgstr "Standard"
+
+msgid "ACTTYPE_SECONDARY"
+msgstr "Second level"
+
+msgid "PAYOUTTYPE_BANK"
+msgstr "Bank"
+
+msgid "PAYOUTTYPE_CASH"
+msgstr "Cash"
+
+msgid "PAYOUTTYPE_CUSTOM"
+msgstr "Black cash"
+
+msgid "PRODUCT_CMTPL"
+msgstr "CMTPL"
+
+msgid "PRODUCT_HOUSEHOLD"
+msgstr "Household"
+
+msgid "PRODUCT_MOD"
+msgstr "Motor insurance"
+
+msgid "PERSONTYPE_PHYSICAL"
+msgstr "Physical"
+
+msgid "PERSONTYPE_LEGAL"
+msgstr "Legal"
+
+msgid "ACTSTATUS_DRAFT"
+msgstr "Draft"
+
+msgid "ACTSTATUS_SENT"
+msgstr "Sent"
+
+msgid "ACTSTATUS_CANCELLED"
+msgstr "Cancelled"
+
+msgid "ACTSTATUS_REJECTED"
+msgstr "Rejected"
+
+msgid "ACTSTATUS_APPROVED"
+msgstr "Approved"
+
+msgid "ACTSTATUS_PAID"
+msgstr "Paid"
+
+msgid "INVOICESTATUS_PAID"
+msgstr "Paid"
+
+msgid "INVOICESTATUS_PARTIALLYPAID"
+msgstr "Partially paid"
+
+msgid "SURE_TO_HIDE_INVOICES_TEXT"
+msgstr "Are you sure to hide selected Co-Free invoice?"
+
+msgid "COMMISSION_DUPLICATE_ERROR"
+msgstr "Commission with duplicate value cannot be created"
+
+msgid "CANCEL_BUTTON_TEXT"
+msgstr "Cancel"
+
+msgid "HIDE_BUTTON_TEXT"
+msgstr "Hide"

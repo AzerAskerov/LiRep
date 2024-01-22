@@ -1,0 +1,455 @@
+﻿@using Libra.Contract
+
+@{
+    ViewBag.Module = NavigationModule.COMMISSIONS;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+
+}
+
+@model ICollection<CommissionConfigModel>
+
+<div ng-controller="commissionListController" ng-init="init(@Model.ToJson())">
+
+    <libra-issues source="issues"></libra-issues>
+    <div ng-cloak class="alert alert-warning" ng-if="showFormWarning">@Html.Translate("COMMISSION_LIST_FORM_WARNING")</div>
+
+    <fieldset>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label>@Html.Translate("COMMISSION_LIST_ACT_TYPE")</label>
+                        <select class="form-control input-sm"
+                                id="ActType"
+                                name="ActType"
+                                ng-change="reload()"
+                                ng-model="filter.actType"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<ActType>())| filter: {key:'!4'}"></select>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>@Html.Translate("COMMISSION_LIST_PRODUCT")</label>
+                        <select class="form-control input-sm"
+                                id="ProductFilter"
+                                name="ProductFilter"
+                                ng-change="reload()"
+                                ng-model="filter.product"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<Product>(true))"></select>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>@Html.Translate("COMMISSION_LIST_BRAND")</label>
+                        <select class="form-control input-sm"
+                                id="BrandFilter"
+                                name="BrandFilter"
+                                ng-change="reload()"
+                                ng-model="filter.brand"
+                                ng-options="item.key as item.value for item in @(Html.Classifier(Model.First().Brands, true))"></select>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>@Html.Translate("COMMISSION_LIST_POLICY_HOLDER_TYPE")</label>
+                        <select class="form-control input-sm"
+                                id="PolicyHolderTypeFilter"
+                                name="PolicyHolderTypeFilter"
+                                ng-change="reload()"
+                                ng-model="filter.policyHolderType"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<PersonType>(true))"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="form-group col-sm-2">
+                        <label>@Html.Translate("COMMISSION_LIST_PAYOUT_TYPE")</label>
+                        <select class="form-control input-sm"
+                                id="PayoutTypeFilter"
+                                name="PayoutTypeFilter"
+                                ng-change="reload()"
+                                ng-model="filter.payoutType"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<PayoutType>(true))"></select>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label>@Html.Translate("COMMISSION_LIST_USERNAME")</label>
+                        <input class="form-control uppercase input-sm"
+                               autocomplete="off"
+                               id="Mediator"
+                               name="Mediator"
+                               type="text"
+                               maxlength="50"
+                               ng-change="waitAndReload()"
+                               ng-model="filter.agent" />
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label>@Html.Translate("COMMISSION_LIST_BENEFICIARY_CODE")</label>
+                        <input class="form-control uppercase input-sm"
+                               autocomplete="off"
+                               id="Beneficiary"
+                               name="Beneficiary"
+                               type="text"
+                               maxlength="50"
+                               ng-change="waitAndReload()"
+                               ng-model="filter.beneficiary" />
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label>@Html.Translate("COMMISSION_LIST_VALID_FROM_TO")</label>
+                        <div>
+                            <input class="form-control date-control input-sm input-half"
+                                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                                   id="ValidFromFilter"
+                                   name="ValidFromFilter"
+                                   type="text"
+                                   ng-change="waitAndReload()"
+                                   ng-model="filter.validFrom" />
+                            <input class="form-control date-control input-sm input-half"
+                                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                                   id="ValidToFilter"
+                                   name="ValidToFilter"
+                                   type="text"
+                                   ng-change="waitAndReload()"
+                                   ng-model="filter.validTo" />
+                        </div>
+                    </div>
+
+            <div class="form-group col-sm-3">
+                <label>@Html.Translate("COMMISSION_LIST_PREMIUM_FROM_TO")</label>
+                <div>
+                    <input class="form-control date-control input-sm input-half"
+                           autocomplete="off"
+                           id="PremiumFrom"
+                           name="PremiumFrom"
+                           type="text"
+                           maxlength="10"
+                           ng-change="waitAndReload()"
+                           ng-model="filter.premiumFrom"/>
+                    <input class="form-control date-control input-sm input-half"
+                           autocomplete="off"
+                           id="PremiumTo"
+                           name="PremiumTo"
+                           type="text"
+                           maxlength="10"
+                           ng-change="waitAndReload()"
+                           ng-model="filter.premiumTo"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-7">
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <label>@Html.Translate("COMMISSION_LIST_VEHICLE_TYPE")</label>
+                <select class="form-control input-sm"
+                        id="VehicleTypeFilter"
+                        name="VehicleTypeFilter"
+                        ng-change="reload()"
+                        ng-model="filter.vehicleType"
+                        ng-options="item.key as item.value for item in @(Html.Classifier<VehicleType>(true))">
+                </select>
+            </div>
+
+            <div class="form-group col-sm-3 ng-hide" ng-show="engineCapacityVisibility()">
+                <label>@Html.Translate("COMMISSION_LIST_ENGINE_FROM_TO")</label>
+                <div>
+                    <input class="form-control date-control input-sm input-half"
+                           autocomplete="off"
+                           id="EngineCapacityFrom"
+                           name="EngineCapacityFrom"
+                           type="text"
+                           maxlength="10"
+                           ng-change="waitAndReload()"
+                           ng-model="filter.engineCapacityFrom"/>
+                    <input class="form-control date-control input-sm input-half"
+                           autocomplete="off"
+                           id="EngineCapacityTo"
+                           name="EngineCapacityTo"
+                           type="text"
+                           maxlength="10"
+                           ng-change="waitAndReload()"
+                           ng-model="filter.engineCapacityTo"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <table ng-cloak class="table table-striped table-hover" ng-form="commissionForm">
+            <thead>
+                <tr>
+                    <th><span class="fa fa-plus pointer" ng-click="addCommission()"></span></th>
+                    <th ng-click="sort('actType')">
+                        @Html.Translate("COMMISSION_LIST_ACT_TYPE")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='actType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('payoutType')">
+                        @Html.Translate("COMMISSION_LIST_PAYOUT_TYPE")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='payoutType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('product')">
+                        @Html.Translate("COMMISSION_LIST_PRODUCT")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='product'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('brand')">
+                        @Html.Translate("COMMISSION_LIST_BRAND")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='brand'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('policyHolderType')">
+                        @Html.Translate("COMMISSION_LIST_POLICY_HOLDER_TYPE")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='policyHolderType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('username')">
+                        @Html.Translate("COMMISSION_LIST_USERNAME")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='username'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('beneficiaryCode')">
+                        @Html.Translate("COMMISSION_LIST_BENEFICIARY_CODE")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='beneficiaryCode'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('validFrom')">
+                        @Html.Translate("COMMISSION_LIST_VALID_FROM")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='policyNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('validTo')">
+                        @Html.Translate("COMMISSION_LIST_VALID_TO")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='validTo'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('amountFixed')">
+                        @Html.Translate("COMMISSION_LIST_AMOUNT_FIXED")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='amountFixed'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('premiumFrom')">
+                        @Html.Translate("COMMISSION_LIST_PREMIUM_FROM")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='premiumFrom'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('premiumTo')">
+                        @Html.Translate("COMMISSION_LIST_PREMIUM_TO")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='premiumTo'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('amountPercent')">
+                        @Html.Translate("COMMISSION_LIST_AMOUNT_PERCENT")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='amountPercent'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('amountMin')">
+                        @Html.Translate("COMMISSION_LIST_AMOUNT_MIN")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='amountMin'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('amountMax')">
+                        @Html.Translate("COMMISSION_LIST_AMOUNT_MAX")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='amountMax'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('vehicleType')">
+                        @Html.Translate("COMMISSION_LIST_VEHICLE_TYPE")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='vehicleType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('engineFrom')">
+                        @Html.Translate("COMMISSION_LIST_ENGINE_FROM")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='engineFrom'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('engineTo')">
+                        @Html.Translate("COMMISSION_LIST_ENGINE_TO")
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='engineTo'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="commission in commissions | orderBy:sortKey:reverse | itemsPerPage:50">
+                    <td style="vertical-align: middle">
+                        <span class="fa fa-trash-o pointer" ng-click="deleteConfirm(commission)"></span>
+                        <span class="fa fa-edit pointer" ng-click="updateConfirm(commission)"></span>
+                    </td>
+
+    <td>
+        <select class="form-control input-sm table-input-md"
+                id="ActType"
+                name="ActType"
+                ng-model="commission.actType"
+                ng-options="item.key as item.value for item in @(Html.Classifier<ActType>())| filter: {key:'!4'}">
+        </select>
+    </td>
+    <td>
+        <select class="form-control input-sm table-input-md"
+                id="PayoutType"
+                name="PayoutType"
+                ng-model="commission.payoutType"
+                ng-options="item.key as item.value for item in @(Html.Classifier<PayoutType>())">
+        </select>
+    </td>
+    <td>
+        <select class="form-control input-sm table-input-sm"
+                id="Product"
+                name="Product"
+                ng-model="commission.product"
+                ng-change="productSelected(commission)"
+                ng-options="item.key as item.value for item in @(Html.Classifier<Product>(true))">
+        </select>
+    </td>
+    <td>
+        <select class="form-control input-sm table-input-sm"
+                id="Brand"
+                name="Brand"
+                ng-model="commission.brand"
+                ng-options="item.key as item.value for item in @(Html.Classifier(Model.First().Brands, true))">
+        </select>
+    </td>
+    <td>
+        <select class="form-control input-sm table-input-sm"
+                id="PolicyHolderType"
+                name="PolicyHolderType"
+                ng-model="commission.policyHolderType"
+                ng-options="item.key as item.value for item in @(Html.Classifier<PersonType>(true))">
+        </select>
+    </td>
+    <td>
+        <input class="form-control input-sm table-input-sm uppercase"
+               id="Username"
+               name="Username"
+               ng-model="commission.username"/>
+    </td>
+    <td>
+        <input class="form-control input-sm table-input-sm uppercase"
+               id="BeneficiaryCode"
+               name="BeneficiaryCode"
+               ng-model="commission.beneficiaryCode"/>
+    </td>
+
+                    <td>
+                        <input class="form-control date-control input-sm table-input-sm"
+                               type="text" datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                               id="ValidFrom"
+                               name="ValidFrom"
+                               ng-model="commission.validFrom"
+                               libra-date-format />
+                    </td>
+
+                    <td>
+                        <input class="form-control date-control input-sm table-input-sm"
+                               type="text" datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                               id="ValidTo"
+                               name="ValidTo"
+                               ng-model="commission.validTo"
+                               libra-date-format />
+                    </td>
+
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">₼</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="AmountFixed"
+                                   name="AmountFixed"
+                                   required="required"
+                                   ng-model="commission.amountFixed"
+                                   libra-max-number="999999"
+                                   libra-min-number="0" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">₼</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="PremiumFrom"
+                                   name="PremiumFrom"
+                                   required="required"
+                                   ng-model="commission.premiumFrom"
+                                   libra-max-number="999999"
+                                   libra-min-number="0" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">₼</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="PremiumTo"
+                                   name="PremiumTo"
+                                   required="required"
+                                   ng-model="commission.premiumTo"
+                                   libra-max-number="999999"
+                                   libra-min-number="0" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">%</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="AmountPercent"
+                                   name="AmountPercent"
+                                   required="required"
+                                   ng-model="commission.amountPercent"
+                                   libra-max-number="100"
+                                   libra-min-number="0" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">₼</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="AmountMin"
+                                   name="AmountMin"
+                                   ng-model="commission.amountMin" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">₼</span>
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="AmountMax"
+                                   name="AmountMax"
+                                   ng-model="commission.amountMax" />
+                        </div>
+                    </td>
+                    <td>
+                        <select class="form-control input-sm table-input-sm"
+                                id="VehicleType"
+                                name="VehicleType"
+                                ng-model="commission.vehicleType"
+                                ng-disabled="!isProductCmtpl(commission.product)"
+                                ng-change="vehicleTypeSelected(commission)"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<VehicleType>(true))">
+                        </select>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="EngineFrom"
+                                   name="EngineCapacityFrom"
+                                   ng-model="commission.engineCapacityFrom"
+                                   ng-disabled="!isVehicleTypePassenger(commission.vehicleType)"
+                                   libra-min-number="0"/>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control table-input-xs"
+                                   libra-money=""
+                                   id="EngineTo"
+                                   name="EngineCapacityTo"
+                                   ng-model="commission.engineCapacityTo"
+                                   ng-disabled="!isVehicleTypePassenger(commission.vehicleType)"
+                                   libra-min-number="0"/>
+                        </div>
+                    </td>
+                    
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    <dir-pagination-controls 
+        max-size="10" 
+        direction-links="true" 
+        boundary-links="true">
+        </dir-pagination-controls>
+    </fieldset>
+</div>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Module = NavigationModule.USERS;
+    ViewBag.Title = Html.Translate("USER_PROFILE_PAGE_TITLE");
+}
+
+@using Libra.Web;
+@using Libra.Web.Controllers
+
+@model Libra.Contract.UserProfileModel
+
+<div ng-controller="userProfileController" ng-cloak ng-init="init(@Model.ToJson())">
+
+    <libra-issues source="model.issues"></libra-issues>
+
+    <fieldset>
+        <div ng-cloak class="form-group col-sm-12">
+            <button class="btn btn-primary" ng-click="save()" ng-disabled="!commissionForm.$valid || commissionForm.$pristine">
+                <span class="fa fa-floppy-o"></span>
+                @Html.Translate("USER_PROFILE_SAVE")
+            </button>
+        </div>
+        
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#data" data-toggle="tab" aria-expanded="true">@Html.Translate("USER_PROFILE_DATA")</a></li>
+            <li><a href="#permissions" data-toggle="tab" aria-expanded="true">@Html.Translate("USER_PROFILE_PERMISSIONS")</a></li>
+        </ul>
+        
+        <div id="userTabContent" class="tab-content">
+
+            <div class="tab-pane fade active in" id="data">
+                <div class="form-group col-xs-12">
+                    <label>@Html.Translate("USER_PROFILE_USERNAME")</label>
+                    <div>{{ model.username }}</div>
+                </div>
+                <div class="form-group col-xs-2">
+                    <label>@Html.Translate("USER_PROFILE_NAME")</label>
+                    <div>{{ model.name }}</div>
+                </div>
+                <div class="form-group col-xs-2">
+                    <label>@Html.Translate("USER_PROFILE_SURNAME")</label>
+                    <div>{{ model.surname }}</div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="permissions">
+                <p>not implemented</p>
+            </div>
+        </div>
+    </fieldset>
+</div>

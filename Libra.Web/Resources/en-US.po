@@ -1,0 +1,698 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: en-US\n"
+
+msgid "ACCOUNT_LOGIN_PAGE_TITLE"
+msgstr "Please log in"
+
+msgid "ACCOUNT_LOGIN_USERNAME_LABEL"
+msgstr "Username"
+
+msgid "ACCOUNT_LOGIN_PASSWORD_LABEL"
+msgstr "Password"
+
+msgid "ACCOUNT_LOGIN_BUTTON_TEXT"
+msgstr "Login"
+
+msgid "ACCOUNT_PROFILE_PAGE_TITLE"
+msgstr "My profile"
+
+msgid "RECALCULATE_INVOICE_LOAD_BUTTON_TEXT"
+msgstr "Import"
+
+msgid "RECALCULATE_LIST_PAGE_TITLE"
+msgstr "Recalculate Invoice List"
+
+
+msgid "RECALCULATE_LIST_INVOICE_NUMBER"
+msgstr "Invoice Number"
+
+
+msgid "RECALCULATE_LIST_STATUS"
+msgstr "Status"
+
+
+msgid "RECALCULATE_LIST_ERROR"
+msgstr "Error"
+
+msgid "ACT_LIST_PAGE_TITLE"
+msgstr "My act list"
+
+msgid "ACT_APPROVAL_PAGE_TITLE"
+msgstr "My approvals"
+
+msgid "ACT_LIST_NUMBER"
+msgstr "Act number"
+
+msgid "ACT_LIST_STATUS"
+msgstr "Status"
+
+msgid "ACT_LIST_RECEIVER"
+msgstr "Receiver"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_LIST_CREATE_DATE"
+msgstr "Create date"
+
+msgid "ACT_LIST_PAYOUT_DATE"
+msgstr "Payout date"
+
+msgid "ACT_LIST_POLICY"
+msgstr "Policy number"
+
+msgid "ACT_LIST_AMOUNT"
+msgstr "Amount"
+
+msgid "LIST_POLICY"
+msgstr "Policy number"
+
+msgid "ACT_LIST_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_LIST_APPROVAL_DATE"
+msgstr "Approval date"
+
+msgid "ACT_VIEW_PAGE_TITLE"
+msgstr "Act details"
+
+msgid "ACT_VIEW_SAVE"
+msgstr "Save draft"
+
+msgid "ACT_VIEW_SEND"
+msgstr "Send"
+
+msgid "ACT_VIEW_APPROVE"
+msgstr "Approve"
+
+msgid "ACT_VIEW_REJECT"
+msgstr "Reject"
+
+msgid "ACT_LIST_CANCEL_BUTTON_TEXT"
+msgstr "Cancel"
+
+msgid "ACT_VIEW_CANCEL"
+msgstr "Cancel"
+
+msgid "ACT_VIEW_PRINT"
+msgstr "Print"
+
+msgid "ACT_VIEW_NUMBER"
+msgstr "Act number"
+
+msgid "ACT_VIEW_REJECT_NOTE"
+msgstr "Reject Reason"
+
+msgid "ACT_VIEW_STATUS"
+msgstr "Status"
+
+msgid "ACT_VIEW_CREATOR"
+msgstr "Creator"
+
+msgid "ACT_VIEW_CREATE_DATE"
+msgstr "Create date"
+
+msgid "ACT_VIEW_COMMISSION"
+msgstr "Commission amount"
+
+msgid "ACT_VIEW_RECEIVER"
+msgstr "Receiver"
+
+msgid "ACT_VIEW_APPROVALS"
+msgstr "Act approvals"
+
+msgid "COMMISSION_LIST_PAGE_TITLE"
+msgstr "Commission list"
+
+msgid "COMMISSION_LIST_SAVE"
+msgstr "Save"
+
+msgid "COMMISSION_LIST_ACT_TYPE"
+msgstr "Act type"
+
+msgid "COMMISSION_LIST_PAYOUT_TYPE"
+msgstr "Payout type"
+
+msgid "COMMISSION_LIST_PRODUCT"
+msgstr "Product"
+
+msgid "COMMISSION_LIST_BRAND"
+msgstr "Brand"
+
+msgid "COMMISSION_LIST_POLICY_HOLDER_TYPE"
+msgstr "Holder type"
+
+msgid "COMMISSION_LIST_USERNAME"
+msgstr "Agent"
+
+msgid "COMMISSION_LIST_BENEFICIARY_CODE"
+msgstr "Beneficiary"
+
+msgid "COMMISSION_LIST_AMOUNT_FIXED"
+msgstr "Amount fixed"
+
+msgid "COMMISSION_LIST_AMOUNT_PERCENT"
+msgstr "Amount percent"
+
+msgid "COMMISSION_LIST_AMOUNT_MIN"
+msgstr "Minimum amount"
+
+msgid "COMMISSION_LIST_AMOUNT_MAX"
+msgstr "Maximum amount"
+
+msgid "COMMISSION_LIST_FORM_WARNING"
+msgstr "To change filter fill in all required fields"
+
+msgid "COMMISSION_UPDATED"
+msgstr "Commission updated"
+
+msgid "COMMISSION_DELETED"
+msgstr "Commission deleted"
+
+msgid "COMMISSION_INSERTED"
+msgstr "Commission inserted"
+
+msgid "INVOICE_LIST_PAGE_TITLE"
+msgstr "Invoice list"
+
+msgid "INVOICE_SECONDARY_LIST_PAGE_TITLE"
+msgstr "Invoice 2nd level list"
+
+msgid "INVOICE_LIST_SYNC_BUTTON_TEXT"
+msgstr "Syncronize"
+
+msgid "ACT_LIST_EXPORT_EXCEL_BUTTON_TEXT"
+msgstr "Export excel"
+
+msgid "INVOICE_LIST_CREATE_BUTTON_TEXT"
+msgstr "Create act"
+
+msgid "INVOICE_LIST_ADD_BUTTON_TEXT"
+msgstr "Add to existing act"
+
+msgid "HIDE_SELECTED_COMISSIONFREE_INVOICES_BUTTON_TEXT"
+msgstr "Hide Co-Free invoice"
+
+msgid "INVOICE_LIST_ADD_ACT_NUMBER"
+msgstr "Act number"
+
+msgid "INVOICE_LIST_ADD_ACT_BUTTON_TEXT"
+msgstr "Add"
+
+msgid "INVOICE_LIST_SELECT_BUTTON_TEXT"
+msgstr "Select all"
+
+msgid "PAYOUT_LIST_PAGE_TITLE"
+msgstr "My payouts"
+
+msgid "PAYOUT_LIST_PAY_BUTTON_TEXT"
+msgstr "Make payout"
+
+msgid "PAYOUT_LIST_BANK_FILE_BUTTON_TEXT"
+msgstr "Mark as paid"
+
+msgid "PAYOUT_LIST_START_EXPORT_BUTTON_TEXT"
+msgstr "Create file"
+
+msgid "PAYOUT_LIST_CONFIRM_EXPORT_BUTTON_TEXT"
+msgstr "Confirm file created"
+
+msgid "PAYOUT_LIST_ACT_NUMBER"
+msgstr "Act number"
+
+msgid "PAYOUT_LIST_STATUS"
+msgstr "Status"
+
+msgid "PAYOUT_LIST_TYPE"
+msgstr "Payout type"
+
+msgid "PAYOUT_LIST_AMOUNT"
+msgstr "Amount"
+
+msgid "PAYOUT_LIST_CREATOR"
+msgstr "Creator"
+
+msgid "PAYOUT_LIST_PAY_DATE"
+msgstr "Payout date"
+
+msgid "PAYOUTS_NOT_FOUND"
+msgstr "No payouts to export"
+
+msgid "INVOICE_LIST_NUMBER"
+msgstr "Invoice number"
+
+msgid "INVOICE_LIST_POLICY_NUMBER"
+msgstr "Policy number"
+
+msgid "INVOICE_LIST_POLICY_HOLDER"
+msgstr "Policy holder"
+
+msgid "INVOICE_LIST_AGENT"
+msgstr "Agent"
+
+msgid "INVOICE_LIST_COMMISSION"
+msgstr "Commission"
+
+msgid "INVOICE_LIST_PREMIUM"
+msgstr "Premium"
+
+msgid "INVOICE_LIST_TOTAL_COMMISSION"
+msgstr "Total commission"
+
+msgid "INVOICE_LIST_PAID_COMMISSION"
+msgstr "Paid commission"
+
+msgid "INVOICE_LIST_UNPAID_COMMISSION"
+msgstr "Unpaid commission"
+
+msgid "INVOICE_LIST_PRODUCT"
+msgstr "Product"
+
+msgid "INVOICE_LIST_PAYOUT_TYPE"
+msgstr "Payout type"
+
+msgid "INVOICE_LIST_BRAND"
+msgstr "Brand"
+
+msgid "INVOICE_LIST_BENEFICIARY"
+msgstr "Beneficiary"
+
+msgid "INVOICE_LIST_UNPAID_PREMIUM"
+msgstr "Premium Unpaid"
+
+msgid "INVOICE_LIST_PAYABLE_PREMIUM"
+msgstr "Payable premium"
+
+msgid "INVOICE_LIST_PAID_PREMIUM"
+msgstr "Premium paid"
+
+msgid "INVOICE_LIST_UNAID_PREMIUM"
+msgstr "Unpaid premium"
+
+msgid "INVOICE_LIST_WITHHELD_COMMISSION"
+msgstr "Withheld commission"
+
+msgid "INVOICE_LIST_STATUS"
+msgstr "Status"
+
+msgid "INVOICE_LIST_MEDIATOR"
+msgstr "Agent"
+
+msgid "INVOICE_LIST_CREATE_DATE"
+msgstr "Issue date"
+
+msgid "INVOICE_LIST_PAY_DATE"
+msgstr "Pay date"
+
+msgid "COMMISSION_LIST_VALID_FROM_TO"
+msgstr "Valid from-to"
+
+msgid "COMMISSION_LIST_VALID_FROM"
+msgstr "Valid from"
+
+msgid "COMMISSION_LIST_VALID_TO"
+msgstr "Valid to"
+
+msgid "COMMISSION_LIST_PREMIUM_FROM_TO"
+msgstr "Premium from-to"
+
+msgid "COMMISSION_LIST_PREMIUM_FROM"
+msgstr "Premium from"
+
+msgid "COMMISSION_LIST_PREMIUM_TO"
+msgstr "Premium to"
+
+msgid "VEHICLETYPE_BUS"
+msgstr "Bus"
+
+msgid "VEHICLETYPE_TRUCK"
+msgstr "Truck"
+
+msgid "VEHICLETYPE_PASSENGER"
+msgstr "Passenger"
+
+msgid "VEHICLETYPE_MOTORCYCLE"
+msgstr "Motorcycle"
+
+msgid "VEHICLETYPE_TRAILER"
+msgstr "Trailer"
+
+msgid "VEHICLETYPE_SPECIALIZED"
+msgstr "Specialized"
+
+msgid "VEHICLETYPE_ELECTRICCAR"
+msgstr "Electric Car"
+
+msgid "COMMISSION_LIST_VEHICLE_TYPE"
+msgstr "Vehicle type"
+
+msgid "COMMISSION_LIST_ENGINE_FROM"
+msgstr "Engine from"
+
+msgid "COMMISSION_LIST_ENGINE_TO"
+msgstr "Engine to"
+
+msgid "COMMISSION_LIST_ENGINE_FROM_TO"
+msgstr "Engine from-to"
+
+msgid "ACT_VIEW_TOTAL_PREMIUM"
+msgstr "Total premium"
+
+msgid "INVOICE_PRODUCT_TYPE"
+msgstr "Selected Invoice(s) product types are not allowed for current user to create act"
+
+msgid "INVOICE_DIFFERENT_MEDIATORS"
+msgstr "Different mediators invoices can't be include in Official type act"
+
+msgid "DIFFERENT_PAYOUT_TYPE_FORBIDDEN"
+msgstr "Different payout type invoices can't be include into same act"
+
+msgid "INVOICE_PRODUCT_TYPE_EXISTING_ACT"
+msgstr "Selected product types are not allowed for current user to add"
+ 
+msgid "ACCOUNT_LOGOUT"
+msgstr "Log out"
+
+msgid "LAYOUT_COPYRIGHT_TEXT"
+msgstr "Ateshgah"
+
+msgid "USER_LIST_PAGE_TITLE"
+msgstr "User list"
+
+msgid "USER_LIST_USERNAME"
+msgstr "Username"
+
+msgid "USER_LIST_NAME"
+msgstr "First name"
+
+msgid "USER_LIST_SURNAME"
+msgstr "Last name"
+
+msgid "USER_PROFILE_PAGE_TITLE"
+msgstr "User profile"
+
+msgid "USER_PROFILE_SAVE"
+msgstr "Save"
+
+msgid "USER_PROFILE_DATA"
+msgstr "Main data"
+
+msgid "USER_PROFILE_PERMISSIONS"
+msgstr "Permissions"
+
+msgid "USER_PROFILE_USERNAME"
+msgstr "Username"
+
+msgid "USER_PROFILE_NAME"
+msgstr "First name"
+
+msgid "USER_PROFILE_SURNAME"
+msgstr "Last name"
+
+msgid "ACT_TYPE_FORBIDDEN"
+msgstr "Act type is forbidden"
+
+msgid "INVALID_STATE"
+msgstr "Invalid act state"
+
+msgid "CUSTOM_COMMISSION_FORBIDDEN"
+msgstr "Custom commission is forbidden"
+
+msgid "ACT_NOT_FOUND"
+msgstr "Act is not found"
+
+msgid "HIDDEN_INVOICE_MUSTBE_COMISSION_FREE"
+msgstr "Chosen invoices must be comission free"
+ 
+ 
+msgid "INVOICE_HIDED"
+msgstr "Choosen commission free invoices removed."
+
+msgid "ACT_APPROVAL_INVALID"
+msgstr "Act approval is invalid"
+
+msgid "ACT_APPROVAL_UNDERWRITER"
+msgstr "Underwriter"
+
+msgid "ACT_STATUS_INVALID"
+msgstr "Act status is invalid"
+
+msgid "ACT_CREATOR_ACTION"
+msgstr "Act creator is not current user"
+
+msgid "ACT_IS_PAID"
+msgstr "Act is paid"
+
+msgid "ACT_HAS_APPROVAL"
+msgstr "Act already approved"
+
+msgid "DUPLICATE_COMMISSIONS"
+msgstr "Some commissions are duplicated"
+
+msgid "COMMISSIONS_SAVED"
+msgstr "Commission have been saved"
+
+msgid "ACCOUNT_LOGIN_INVALID"
+msgstr "Invalid username or password"
+
+msgid "USER_NOT_FOUND"
+msgstr "User is not found"
+
+msgid "USER_SAVED"
+msgstr "User has been saved"
+
+msgid "ACTTYPE_PRIMARY"
+msgstr "Standard"
+
+msgid "ACTTYPE_SECONDARY"
+msgstr "Second level"
+
+msgid "PAYOUTTYPE_BANK"
+msgstr "Bank"
+
+msgid "PAYOUTTYPE_CASH"
+msgstr "Cash"
+
+msgid "PAYOUTTYPE_CUSTOM"
+msgstr "Cash"
+
+msgid "PRODUCT_CMTPL"
+msgstr "CMTPL"
+
+msgid "PRODUCT_HOUSEHOLD"
+msgstr "Household"
+
+msgid "PRODUCT_MOD"
+msgstr "Motor insurance"
+
+msgid "PERSONTYPE_PHYSICAL"
+msgstr "Physical"
+
+msgid "PERSONTYPE_LEGAL"
+msgstr "Legal"
+
+msgid "ACTSTATUS_DRAFT"
+msgstr "Draft"
+
+msgid "ACTSTATUS_SENT"
+msgstr "Sent"
+
+msgid "ACTSTATUS_CANCELLED"
+msgstr "Cancelled"
+
+msgid "ACTSTATUS_REJECTED"
+msgstr "Rejected"
+
+msgid "ACTSTATUS_APPROVED"
+msgstr "Approved"
+
+msgid "ACTSTATUS_PAID"
+msgstr "Paid"
+
+msgid "INVOICESTATUS_PAID"
+msgstr "Paid"
+
+msgid "INVOICESTATUS_PARTIALLYPAID"
+msgstr "Partially paid"
+
+msgid "ACT_VIEW_INSURER"
+msgstr "Insurer"
+
+msgid "ACT_VIEW_BROKER"
+msgstr "Broker"
+
+msgid "INSURER_ATESHGAH"
+msgstr "“Atəşgah” Sığorta Şirkəti ASC"
+
+msgid "INSURER_ATESHGAHLIFE"
+msgstr "“Atəşgah Həyat” Sığorta Şirkəti ASC"
+
+msgid "ACT_VIEW_INVOICE_COUNT"
+msgstr "Hesabların sayı"
+
+msgid "PRODUCT_VESSELS"
+msgstr "DənizNV"
+
+msgid "PRODUCT_CARGO"
+msgstr "Yük"
+
+msgid "PRODUCT_KASKOCOMBI"
+msgstr "KASKOCombi"
+
+msgid "PRODUCT_BANKCASCO"
+msgstr "KASKOBank"
+
+msgid "PRODUCT_AGENTKASKO"
+msgstr "KASKORetail"
+
+msgid "PRODUCT_NVMMIS"
+msgstr "NVSMMİS"
+
+msgid "PRODUCT_MTPL_5"
+msgstr "KASKOBeşlik"
+
+msgid "PRODUCT_MTPL_SUPERK"
+msgstr "KASKOSuper"
+
+msgid "PRODUCT_MTPL_SARI"
+msgstr "Sarı"
+
+msgid "PRODUCT_MTPL_NARINCI"
+msgstr "Narıncı"
+
+msgid "PRODUCT_IFQ"
+msgstr "İcbariFQ"
+
+msgid "PRODUCT_TRAVEL"
+msgstr "Səfər"
+
+msgid "PRODUCT_PROPERTY"
+msgstr "Əmlak İcbari "
+
+msgid "PRODUCT_PROPLIAB"
+msgstr "ƏmlakTPL İcbari"
+
+msgid "PRODUCT_FA"
+msgstr "Könüllü Əmlak"
+
+msgid "PRODUCT_MI"
+msgstr "KASKO"
+
+msgid "PRODUCT_PA"
+msgstr "FQ"
+
+msgid "PRODUCT_CA"
+msgstr "AuditTPL"
+
+msgid "PRODUCT_PM"
+msgstr "MaşınAvadanlıq"
+
+msgid "PRODUCT_LC"
+msgstr "Məsuliyyət"
+
+msgid "PRODUCT_CAR"
+msgstr "TikintiMontaj"
+
+msgid "PRODUCT_CE"
+msgstr "MəsuliyyətEKO"
+
+msgid "PRODUCT_LA"
+msgstr "HəyatOnline"
+
+msgid "PRODUCT_TS"
+msgstr "Tibbi"
+
+msgid "PRODUCT_TRAVELIMPORT"
+msgstr "Səfər (Import)"
+
+msgid "PRODUCT_MA"
+msgstr "Həyatİpoteka"
+
+msgid "PRODUCT_EA"
+msgstr "HəyatYığım"
+
+msgid "PRODUCT_RT_PAT"
+msgstr "KASKOİcbariPlus"
+
+msgid "PRODUCT_GC"
+msgstr "NVSMMİSYaşıl"
+
+msgid "PRODUCT_FM"
+msgstr "Əmlakİpoteka"
+
+msgid "PRODUCT_LEP"
+msgstr "İŞİtirilməsi"
+
+msgid "PRODUCT_SMLX"
+msgstr "KASKOButik"
+
+msgid "PRODUCT_MINIRETAILCASCO"
+msgstr "Bölgəm"
+
+msgid "COMISSIONCHANGE_LIST_PAGE"
+msgstr "Commission change"
+
+msgid "SEARCH"
+msgstr "Search"
+
+msgid "START_DATE"
+msgstr "Start date"
+
+msgid "END_DATE"
+msgstr "End date"
+
+msgid "CREATE_ACT"
+msgstr "Create act"
+
+msgid "ACTTYPE_USERCOMISSION"
+msgstr "UserCommission"
+
+msgid "ACT_MISSING_VALUE"
+msgstr "All values must be provided"
+
+msgid "PRODUCT_NSPLUS"
+msgstr "NSPlus"
+
+msgid "PRODUCT_Arxayin_Qonsu"
+msgstr "ArxayınQonşu"
+
+msgid "PRODUCT_Antikoronavirus"
+msgstr "Antikoronavirus"
+
+msgid "PRODUCT_YuzYasha"
+msgstr "YüzYaşa"
+
+msgid "YuzYasha"
+msgstr "YüzYaşa"
+
+msgid "PRODUCT_RentaCar"
+msgstr "RentaCar"
+
+msgid "PRODUCT_CMR"
+msgstr "CMR"
+
+msgid "PRODUCT_TermLife"
+msgstr "MüddətliHəyat"
+
+msgid "COMMISSION_DUPLICATE_ERROR"
+msgstr "Commission with duplicate value cannot be created"
+
+msgid "SURE_TO_HIDE_INVOICES_TEXT"
+msgstr "Are you sure to hide selected Co-Free invoice?"
+
+msgid "CANCEL_BUTTON_TEXT"
+msgstr "Cancel"
+
+msgid "HIDE_BUTTON_TEXT"
+msgstr "Hide"

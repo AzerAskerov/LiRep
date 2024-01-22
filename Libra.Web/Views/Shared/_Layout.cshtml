@@ -1,0 +1,89 @@
+﻿@using Libra.Contract
+<!DOCTYPE html>
+<html ng-app="libra">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Libra.css?@Config.Version"/>
+    <base href="~/" />
+</head>
+<body ng-controller="mainController">
+
+    <div class="spinner-overlay" ng-show="httpInProgress">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="~/" class="navbar-brand"><img src="~/Content/Assets/Libra.png?@Config.Version" class="logo" /></a>
+            </div>
+            @if (Libra.Web.User.Current.IsAuthenticated)
+            {
+                <div id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        @foreach (var module in Navigation.Modules.Values)
+                        {
+                            if (Html.IsInRole(module.Roles))
+                            {
+                                <li @(module.Id == ViewBag.Module ? "class=active" : "")>
+                                    <a href="@module.Url" title="@Html.Translate(module.Title)">
+                                        <span class="fa fa-2x fa-@module.Icon"></span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li @(NavigationModule.PROFILE == ViewBag.Module ? "class=active" : "")>
+                            <a href="~/Account/Profile" title="@Html.Translate("ACCOUNT_PROFILE_PAGE_TITLE")">
+                                <span class="fa fa-user fa-2x"></span>
+                                <span class="username">@Libra.Web.User.Current.FullName</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Account/Logout" title="@Html.Translate("ACCOUNT_LOGOUT")">
+                                <span class="fa fa-sign-out fa-2x"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                    <h2>@ViewBag.Title</h2>
+                </div>
+
+                <div class="bs-component page-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - @Html.Translate("LAYOUT_COPYRIGHT_TEXT")</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.settings = {
+            today: '@DateTime.Now.ToString(Constants.DATE_FORMAT)'
+        };
+    </script>
+
+    <script type="text/javascript" src="~/Content/angular.js"></script>
+    <script type="text/javascript" src="~/Content/dirPagination.js"></script>
+    <script type="text/javascript" src="~/Content/Libra.js?@Config.Version"></script>
+
+</body>
+</html>

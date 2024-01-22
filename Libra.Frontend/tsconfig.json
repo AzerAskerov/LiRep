@@ -1,0 +1,15 @@
+{
+    "TypeScriptCodeGenTarget": "ES5",
+    "compilerOptions": {
+        "target": "es5",
+        "sourceMap": true,
+        "removeComments": true,
+        "preserveConstEnums": true
+    },
+    "files": [
+        "./Typings/libra.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

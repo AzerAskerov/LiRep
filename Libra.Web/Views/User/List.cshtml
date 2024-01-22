@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Module = NavigationModule.USERS;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+}
+
+<div ng-controller="userListController" ng-init="init()">
+    <table ng-cloak class="table table-striped table-hover selectable-list">
+        <thead>
+            <tr>
+                <th>@Html.Translate("USER_LIST_USERNAME")</th>
+                <th>@Html.Translate("USER_LIST_NAME")</th>
+                <th>@Html.Translate("USER_LIST_SURNAME")</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr @*ng-repeat="user in model.users"*@ ng-click="open(user)" dir-paginate="user in model.users | orderBy:sortKey:reverse | filter:search|itemsPerPage:50">
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+    </dir-pagination-controls>
+</div>

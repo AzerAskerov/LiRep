@@ -1,0 +1,160 @@
+﻿
+@model List<Libra.Contract.Models.PolicyInvoiceModel>
+
+@{
+    ViewBag.Module = NavigationModule.COMISSIONCHANGE;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+
+    bool CanPreDefineCustomCommision = ViewBag.CanPreDefineCustomCommision;
+
+    bool CanAddExtraAct = ViewBag.CanAddExtraAct;
+}
+<style>
+
+    #msg{
+
+        display:none;
+        width:50%;
+    }
+
+
+</style>
+<div ng-controller="comissionChangeController" ng-init="init()">
+
+    <div class="row">
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("INVOICE_LIST_POLICY_NUMBER")</label>
+            <input class="form-control uppercase input-sm"
+                   autocomplete="off"
+                   type="text"
+                   maxlength="50"
+                   ng-model="model.policy_number" />
+        </div>
+
+        <div>
+
+            <button style="width:10%;margin-top:1.5%" class="btn btn-primary" ng-click="reload()"> <i class="fa fa-search-plus"> </i> @Html.Translate("SEARCH")    </button>
+
+        </div>
+    </div>
+    <hr />
+    <div class="row" style="padding:10px; background-color:darkslategray;border-radius:7px;border:none">
+
+
+        <div class="col-md-6">
+
+            <label style="margin-right:5px">@Html.Translate("INVOICE_LIST_POLICY_HOLDER"):</label>
+            <p> {{model.client_name}} </p>
+
+        </div>
+        <div class="col-md-3">
+
+            <label style="margin-right:5px">@Html.Translate("START_DATE"):</label>
+            <p>{{model.start_date}} </p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <label style="margin-right:5px">@Html.Translate("END_DATE"):</label>
+            <p>{{model.end_date}} </p>
+        </div>
+
+    </div>
+
+    <hr />
+    <div id="msg" role="alert" ng-class="{'alert alert-danger' : result.isSuccess==false , 'alert alert-success' : result.isSuccess==true}">
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <form>
+
+        <input class=" input-sm" type="hidden" ng-model="model.lob_oid" value="{{model.lob_oid}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.amount_premium" value="{{model.amount_premium}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.client_name" value="{{model.client_name}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.client_code" value="{{model.client_code}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.amount_paid" value="{{model.amount_paid}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.create_time" value="{{model.create_time}}" />
+        <input class=" input-sm" type="hidden" ng-model="model.com" value="{{model.com}}" />
+
+
+        @if (CanPreDefineCustomCommision)
+        {
+            <div>
+                <button style="float:right;width:10%;margin-top:5px;margin-bottom:10px" ng-click="createComissionChange()" class="btn btn-success"> <i class="fa fa-plus-circle"></i>  Save</button>
+
+            </div>
+
+        }
+
+        <table ng-cloak class="table table-striped table-hover ">
+
+            <thead>
+                <tr>
+                    @if (CanAddExtraAct)
+                    {
+                        <th> @Html.Translate("Operation") </th>
+
+                    }
+
+                    <th>
+                        @Html.Translate("INVOICE_LIST_NUMBER")
+                    </th>
+
+                    <th>
+                        @Html.Translate("INVOICE_LIST_COMMISSION")
+                    </th>
+                    <th>  @Html.Translate("COMMISSION_LIST_ACT_TYPE")</th>
+
+                    <th>  @Html.Translate("COMMISSION_LIST_PAYOUT_TYPE")</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="main" ng-repeat="(index,policy) in policies" @*dir-paginate="policy in model.policies | orderBy:sortKey:reverse | filter:search|itemsPerPage:50"*@>
+                    @if (CanAddExtraAct)
+                    {
+                        <td><button class="btn btn-primary" ng-click="createAct(policy)"><i class="fa fa-plus-circle"> @Html.Translate("CREATE_ACT")</i>   </button> </td>
+
+                    }
+
+
+
+
+                    <td>  <input class=" input-sm" type="hidden" ng-model="policy.invoice_number" value="{{ policy.invoice_number}}" /> {{policy.invoice_number}}  </td>
+                    <td>  <input class=" form-control input-sm" ng-model="policy.amount" /> </td>
+                    <td>
+                        @if (CanAddExtraAct)
+                        {
+                            <select class=" form-control input-sm"
+                                    style="cursor:pointer"
+                                    ng-model="policy.acttype"
+                                    ng-options="item.key  as item.value for item  in @(Html.Classifier<Libra.Contract.ActType>(true)) | filter: {key:4} "></select>
+                        }
+                        else
+                        {
+                            <select class=" form-control input-sm"
+                                    style="cursor:pointer"
+                                    ng-model="policy.acttype"
+                                    ng-options="item.key  as item.value for item  in @(Html.Classifier<Libra.Contract.ActType>(true)) | filter: {key:'!4'}"></select>
+                        }
+
+                    </td>
+                    <td>
+                        <select class="form-control input-sm"
+                                style="cursor:pointer"
+                                ng-model="policy.payouttype"
+                                ng-options="item.key as item.value for item in @(Html.Classifier<Libra.Contract.PayoutType>(true))  "></select>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+    </dir-pagination-controls>
+</div>
+

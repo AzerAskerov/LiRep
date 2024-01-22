@@ -1,0 +1,156 @@
+﻿@using Libra.Contract
+@{
+    ViewBag.Module = NavigationModule.ACTS;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+}
+
+<div ng-controller="actListController" ng-init="init()">
+
+    <libra-issues source="model.issues"></libra-issues>
+
+    <button class="btn btn-primary" ng-click="exportExcel()">
+        <span class="fa fa-file-excel-o"></span>
+        @Html.Translate("ACT_LIST_EXPORT_EXCEL_BUTTON_TEXT")
+    </button>
+
+    <hr />
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_STATUS")</label>
+        <select class="form-control input-sm"
+                id="Status"
+                name="Status"
+                ng-change="reload()"
+                ng-model="filter.status"
+                ng-options="item.key as item.value for item in @(Html.Classifier<ActStatus>(true))"></select>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_NUMBER")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="ActNumber"
+               name="ActNumber"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.ActNumber"/>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_RECEIVER")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Receiver"
+               name="Receiver"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.receiver"/>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_CREATE_DATE")</label>
+        <div>
+            <input class="form-control date-control input-sm input-half"
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="CreateDateFrom"
+                   name="CreateDateFrom"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.createDateFrom"/>
+            <input class="form-control date-control input-sm input-half"
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="CreateDateTill"
+                   name="CreateDateTill"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.createDateTill"/>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_PAYOUT_DATE")</label>
+        <div>
+            <input class="form-control date-control input-sm input-half"
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="PayoutDateFrom"
+                   name="PayoutDateFrom"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payoutDateFrom"/>
+            <input class="form-control date-control input-sm input-half"
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="PayoutDateTill"
+                   name="PayoutDateTill"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payoutDateTill"/>
+        </div>
+    </div>
+    
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("ACT_LIST_POLICY")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Policy"
+               name="Policy"
+               type="text"
+               maxlength="50"
+               ng-change="policyFilterChanged()"
+               ng-model="filter.policynumber"/>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_NUMBER")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Invoice"
+               name="Invoice"
+               type="text"
+               maxlength="50"
+               ng-change="invoiceFilterChanged()"
+               ng-model="filter.invoicenumber"/>
+    </div>
+
+    <table ng-cloak class="table table-striped table-hover selectable-list">
+        <thead>
+            <tr>
+                <th ng-click="sort('id')">
+                    @Html.Translate("ACT_LIST_NUMBER")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('statusText')">
+                @Html.Translate("ACT_LIST_STATUS")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='statusText'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('createDate')">
+                @Html.Translate("ACT_LIST_CREATE_DATE")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='createDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('payoutInfo')">
+                @Html.Translate("ACT_LIST_PAYOUT_DATE")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='payoutInfo'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('amount')">
+                @Html.Translate("ACT_LIST_AMOUNT")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='amount'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-click="open(act)" dir-paginate="act in model.acts | orderBy:sortKey:reverse | itemsPerPage:50">
+                <td>{{act.id}}</td>
+                <td>{{act.statusText}}</td>
+                <td>{{act.createDate | libraDate}}</td>
+                <td><small>{{act.payoutInfo}}</small></td>
+                <td>{{act.amount | libraMoney}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls 
+        max-size="10" 
+        direction-links="true" 
+        boundary-links="true">
+    </dir-pagination-controls>
+</div>

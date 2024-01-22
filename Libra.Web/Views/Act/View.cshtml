@@ -1,0 +1,212 @@
+﻿@model Libra.Contract.ActModel
+
+@using Libra.Contract
+@using Libra.Web;
+
+@{
+    ViewBag.Title = Html.Translate("ACT_VIEW_PAGE_TITLE");
+    bool isAdmin = false;
+
+    if (ViewBag.Admin != null)
+    {
+        isAdmin = ViewBag.Admin;
+
+    }
+
+}
+
+<div ng-controller="actController" ng-init="init(@Model.ToJson())">
+
+    <libra-issues source="model.issues"></libra-issues>
+
+    <fieldset ng-form="actForm">
+
+        <div id="hiddenValues">
+
+            <input type="hidden" ng-model="model.payouttype" value="{{model.payouttype}}" />
+            <input type="hidden" ng-model="model.com" value="{{model.com}}" />
+        </div>
+
+        <div ng-cloak class="form-group col-sm-12">
+            @if (Html.IsInRole(Role.ActCreator) || Html.IsInRole(Role.ActCreator))
+            {
+                if (!isAdmin)
+                {
+                    <button ng-show="model.status === 0" class="btn btn-primary" ng-click="save()" ng-disabled="!actForm.$valid">
+                        <span class="fa fa-floppy-o"></span>
+                        @Html.Translate("ACT_VIEW_SAVE")
+                    </button>
+                    <button ng-show="model.status === 0" class="btn btn-primary" ng-click="send()" ng-disabled="!actForm.$valid">
+                        <span class="fa fa-envelope-o"></span>
+                        @Html.Translate("ACT_VIEW_SEND")
+                    </button>
+                }
+
+            }
+            @if (Html.IsInRole(new[] { Role.ActCurator, Role.Underwriter }))
+            {
+                if (!isAdmin)
+                {
+                    <button ng-show="canApprove(@Libra.Web.User.Current.Id, @Html.IsInRole(Role.Underwriter).ToString().ToLower())" class="btn btn-primary" ng-click="approve()">
+                        <span class="fa fa-check"></span>
+                        @Html.Translate("ACT_VIEW_APPROVE")
+                    </button>
+
+                    <button class="btn btn-primary" ng-show="canReject(@Libra.Web.User.Current.Id, @Html.IsInRole(Role.Underwriter).ToString().ToLower())" ng-click="rejectActDialog()">
+                        <span class="fa fa-times"></span>
+                        @Html.Translate("ACT_VIEW_REJECT")
+                    </button>
+                    <div id="rejectActDialog" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">@Html.Translate("ACT_VIEW_REJECT")</h4>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <textarea ng-model="model.rejectNote" class="form-control input-sm" aria-label="text"></textarea>
+                                    <br>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        <span class="fa fa-times"></span>
+                                        @Html.Translate("ACT_LIST_CANCEL_BUTTON_TEXT")
+                                    </button>
+
+                                    <button class="btn btn-primary" ng-click="reject()">
+                                        <span class="fa fa-check"></span>
+                                        @Html.Translate("ACT_VIEW_REJECT")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+
+
+
+            }
+            @if (Libra.Web.User.Current.Id == Model.CreatorId)
+            {
+                if (!isAdmin)
+                {
+                    <button ng-show="model.status === 1 || model.status === 3 || model.status === 4" class="btn btn-primary" ng-click="cancel()">
+                        <span class="fa fa-ban"></span>
+                        @Html.Translate("ACT_VIEW_CANCEL")
+                    </button>
+                }
+
+                <a href="/Act/Print/@Model.Id" ng-show="model.status === 0 || model.status === 1 || model.status === 2 || model.status === 3 || model.status === 4" class="btn btn-primary" target="_blank">
+                    <span class="fa fa-print"></span>
+                    @Html.Translate("ACT_VIEW_PRINT")
+                </a>
+            }
+            <a href="/Act/ExportInvoiceList/@Model.Id" class="btn btn-primary" target="_blank">
+                <span class="fa fa-file-excel-o"></span>
+                @Html.Translate("ACT_LIST_EXPORT_EXCEL_BUTTON_TEXT")
+            </a>
+        </div>
+
+        <div ng-cloak class="col-sm-8">
+
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_NUMBER")</label>
+                <div>{{ model.id }}</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_STATUS")</label>
+                <div>{{ model.statusText }}</div>
+            </div>
+            <div class="form-group col-sm-4" ng-show="model.rejectNote!= null">
+                <label>@Html.Translate("ACT_VIEW_REJECT_NOTE")</label>
+                <div>{{model.rejectNote}}</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_CREATOR")</label>
+                <div>{{ model.creator }}</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_CREATE_DATE")</label>
+                <div>{{ model.createDate | libraDate }}</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_COMMISSION")</label>
+                <div ng-show="actForm.$valid">{{ model.commission | libraMoney }}</div>
+                <div ng-hide="actForm.$valid">---</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_TOTAL_PREMIUM")</label>
+                <div ng-show="actForm.$valid">{{ model.totalPremium | libraMoney }}</div>
+                <div ng-hide="actForm.$valid">---</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_INVOICE_COUNT")</label>
+                <div ng-show="actForm.$valid">{{ model.invoiceCount }}</div>
+                <div ng-hide="actForm.$valid">---</div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.Translate("ACT_VIEW_RECEIVER")</label>
+                @if (Model.Type == ActType.Secondary && Model.Status == ActStatus.Draft)
+                {
+                    <select class="form-control input-sm"
+                            id="Receiver"
+                            name="Receiver"
+                            required
+                            ng-model="model.receiverId"
+                            ng-options="item.key as item.value for item in receivers"></select>
+                }
+                else
+                {
+                    <div>{{ model.receiver }}</div>
+                }
+            </div>
+        </div>
+
+        <div ng-cloak class="form-group col-sm-4">
+            <div ng-show="showApprovals()">
+                <label for="Approvers">@Html.Translate("ACT_VIEW_APPROVALS")</label>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="approval in model.approvals">
+                        <span ng-if="approval.isApproved" class="approval-icon fa fa-check-circle text-success"></span>
+                        <span ng-if="approval.isApproved === false" class="approval-icon fa fa-times-circle text-danger"></span>
+                        <span ng-if="approval.isApproved === null" class="approval-icon fa fa-question-circle text-warning"></span>
+                        {{approval.approver}}
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="form-group col-sm-6">
+                    <label>@Html.Translate("ACT_VIEW_INSURER")</label>
+                    <select class="form-control input-sm"
+                            ng-readonly="true"
+                            disabled="true"
+                            id="Insurer"
+                            name="Insurer"
+                            ng-model="model.insurerID"
+                            ng-options="item.key as item.value for item in @(Html.Classifier<Insurer>(false))"></select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>@Html.Translate("ACT_VIEW_BROKER")</label>
+                    <select class="form-control input-sm"
+                            ng-readonly="!model.customCommissions"
+                            id="Broker"
+                            name="Broker"
+                            ng-model="model.brokerID"
+                            ng-options="item.Id as item.Username for item in @Json.Encode(@Model.Brokers)"></select>
+                </div>
+            </div>
+
+        </div>
+
+        @Html.Partial("_Invoices")
+
+    </fieldset>
+
+
+</div>
+
+

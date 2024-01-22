@@ -1,0 +1,46 @@
+﻿@model Libra.Contract.LoginModel
+
+@{
+    ViewBag.Title = Html.Translate("ACCOUNT_LOGIN_PAGE_TITLE");
+}
+
+<div ng-controller="accountLoginController">
+
+    <libra-issues source="model.issues"></libra-issues>
+
+    <fieldset class="col-sm-6 col-md-4" ng-form="accountLoginForm">
+
+        <div class="form-group">
+            <label for="Username">@Html.Translate("ACCOUNT_LOGIN_USERNAME_LABEL")</label>
+            <input class="form-control uppercase input-sm"
+                   autofocus="autofocus"
+                   autocomplete="off"
+                   id="Username"
+                   name="Username"
+                   type="text"
+                   maxlength="50"
+                   required="required"
+                   ng-model="model.username"
+                   libra-on-press-enter="accountLoginForm.$valid && login()" />
+        </div>
+        <div class="form-group">
+            <label for="Username">@Html.Translate("ACCOUNT_LOGIN_PASSWORD_LABEL")</label>
+            <input class="form-control input-sm"
+                   id="Password"
+                   name="Password"
+                   type="password"
+                   maxlength="50"
+                   required="required"
+                   ng-model="model.password"
+                   libra-on-press-enter="accountLoginForm.$valid && login()" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary"
+                    ng-click="login()"
+                    ng-disabled="!accountLoginForm.$valid">
+                @Html.Translate("ACCOUNT_LOGIN_BUTTON_TEXT")
+            </button>
+        </div>
+    </fieldset>
+
+</div>

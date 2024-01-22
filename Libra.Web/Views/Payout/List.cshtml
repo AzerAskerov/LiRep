@@ -1,0 +1,249 @@
+﻿@using Libra.Contract
+@{
+    ViewBag.Module = NavigationModule.PAYOUTS;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+}
+
+@model InvoiceListModel
+
+<div ng-controller="payoutController" ng-init="init()">
+    <libra-issues source="model.issues"></libra-issues>
+
+    <button class="btn btn-primary" ng-click="payDialog()" ng-disabled="!payEnabled()">
+        <span class="fa fa-money"></span>
+        @Html.Translate("PAYOUT_LIST_PAY_BUTTON_TEXT")
+    </button>
+
+    @if (Html.IsInRole(Role.ActBankPayer))
+    {
+        <button class="btn btn-primary" ng-click="exportDialog()">
+            <span class="fa fa-download"></span>
+            @Html.Translate("PAYOUT_LIST_BANK_FILE_BUTTON_TEXT")
+        </button>
+    }
+
+    <div id="exportDialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">@Html.Translate("PAYOUT_LIST_BANK_FILE_BUTTON_TEXT")</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="fa fa-times"></span>
+                        @Html.Translate("CANCEL_BUTTON_TEXT")
+                    </button>
+                    <button class="btn btn-primary" ng-click="export()">
+                        <span class="fa fa-download"></span>
+                        @Html.Translate("PAYOUT_LIST_START_EXPORT_BUTTON_TEXT")
+                    </button>
+                    <button class="btn btn-primary" ng-disabled="!bankPayouts.length" ng-click="payBank()">
+                        <span class="fa fa-check"></span>
+                        @Html.Translate("PAYOUT_LIST_CONFIRM_EXPORT_BUTTON_TEXT")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="payDialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">@Html.Translate("PAYOUT_LIST_PAY_BUTTON_TEXT")</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-half">
+                        <div class="form-group">
+                            <label>@Html.Translate("PAYOUT_LIST_PAY_DATE")</label>
+                            <input class="form-control date-control input-sm"
+                                   data-provide="datepicker"
+                                   data-date-autoclose="true"
+                                   data-date-format="@Constants.DATE_FORMAT_JS"
+                                   autocomplete="off"
+                                   id="PayDate"
+                                   name="PayDate"
+                                   type="text"
+                                   ng-model="payDate" />
+                        </div>
+                        <div class="form-group">
+                            <label>@Html.Translate("PAYOUT_LIST_AMOUNT")</label>
+                            <span class="input-group input-group-sm">
+                                <span class="input-group-addon">₼</span>
+                                <input class="form-control"
+                                       libra-money=""
+                                       id="PayAmount"
+                                       name="PayAmount"
+                                       ng-model="activePayout.amount"
+                                       readonly="readonly" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="fa fa-times"></span>
+                        @Html.Translate("CANCEL_BUTTON_TEXT")
+                    </button>
+                    <button class="btn btn-primary" ng-disabled="!payDate" ng-click="pay()">
+                        <span class="fa fa-money"></span>
+                        @Html.Translate("PAYOUT_LIST_PAY_BUTTON_TEXT")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("PAYOUT_LIST_ACT_NUMBER")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="ActNumber"
+               name="ActNumber"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.actNumber" />
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("PAYOUT_LIST_STATUS")</label>
+        <select class="form-control input-sm"
+                id="ActStatus"
+                name="ActStatus"
+                ng-change="waitAndReload()"
+                ng-model="filter.status"
+                ng-options="item.key as item.value for item in @(Html.Classifier<ActStatus>(true))"></select>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("LIST_POLICY")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Policy"
+               name="Policy"
+               type="text"
+               maxlength="50"
+               ng-change="policyFilterChanged()"
+               ng-model="filter.policynumber" />
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("PAYOUT_LIST_TYPE")</label>
+        <select class="form-control input-sm"
+                id="Type"
+                name="Type"
+                ng-change="reload()"
+                ng-model="filter.Type"
+                ng-options="item.key as item.value for item in @(Html.Classifier<PayoutType>(true))"></select>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("PAYOUT_LIST_AMOUNT")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Amount"
+               name="Amount"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.amount" />
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("PAYOUT_LIST_CREATOR")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Creator"
+               name="Creator"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.creator" />
+    </div>
+
+    <div class="form-group col-sm-3">
+        <label>@Html.Translate("PAYOUT_LIST_PAY_DATE")</label>
+        <div>
+            <input class="form-control date-control input-sm input-half"
+                   @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="PayoutDateFrom"
+                   name="PayoutDateFrom"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payoutDateFrom" />
+            <input class="form-control date-control input-sm input-half"
+                   @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                   datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                   id="PayoutDateTill"
+                   name="PayoutDateTill"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payoutDateTill" />
+        </div>
+    </div>
+
+    <table ng-cloak class="table table-striped table-hover extended-list">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>@Html.Translate("PAYOUT_LIST_ACT_NUMBER")</th>
+                <th ng-click="sort('status')">
+                    @Html.Translate("PAYOUT_LIST_STATUS")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th>@Html.Translate("PAYOUT_LIST_TYPE")</th>
+                <th>@Html.Translate("PAYOUT_LIST_AMOUNT")</th>
+                <th>@Html.Translate("PAYOUT_LIST_CREATOR")</th>
+                <th>@Html.Translate("PAYOUT_LIST_PAY_DATE")</th>
+                <th>@Html.Translate("PAYOUT_BROKER_FULLNAME")</th>
+
+            </tr>
+        </thead>
+        <tbody @*ng-repeat="payout in model.payouts"*@ dir-paginate="payout in model.payouts | orderBy:sortKey:reverse | filter:search|itemsPerPage:50">
+            <tr class="main" ng-class="{ selected : payout.selected }">
+                <td style="width:25px" ng-if="!payout.expanded" ng-click="payout.expanded = !payout.expanded"><span class="pointer fa fa-plus-square"></span></td>
+                <td style="width:25px" ng-if="payout.expanded" ng-click="payout.expanded = !payout.expanded"><span class="pointer fa fa-minus-square"></span></td>
+                <td ng-click="select(payout)">{{payout.actId}}</td>
+                <td ng-click="select(payout)">{{payout.status}}</td>
+                <td ng-click="select(payout)">{{payout.typeText}}</td>
+                <td ng-click="select(payout)">{{payout.amount | libraMoney}}</td>
+                <td ng-click="select(payout)">{{payout.creator}}</td>
+                <td ng-click="select(payout)">{{payout.payDate | libraDate}}</td>
+                <td ng-click="select(payout)">{{payout.broker }}</td>
+
+            </tr>
+            <tr ng-show="payout.expanded">
+                <td class="row-details" colspan="5">
+                    <div>
+                        <div class="col-xs-12 details-header">
+                            <span class="col-xs-2">@Html.Translate("INVOICE_LIST_NUMBER")</span>
+                            <span class="col-xs-3">@Html.Translate("INVOICE_LIST_POLICY_NUMBER")</span>
+                            <span class="col-xs-4">@Html.Translate("INVOICE_LIST_POLICY_HOLDER")</span>
+                            <span class="col-xs-3">@Html.Translate("INVOICE_LIST_COMMISSION")</span>
+                        </div>
+                        <ul class="list-group details-body">
+                            <li class="col-xs-12 list-group-item" ng-repeat="invoice in payout.invoices">
+                                <span class="col-xs-2">{{ invoice.number }}</span>
+                                <span class="col-xs-3">{{ invoice.policyNumber }}</span>
+                                <span class="col-xs-4">{{ invoice.policyHolder }}</span>
+                                <span class="col-xs-3">{{ invoice.commission.value | libraMoney }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+    </dir-pagination-controls>
+</div>

@@ -1,0 +1,11 @@
+<select class="selectpicker"
+        lithium-select-required
+        id="VehicleType"
+        name="VehicleType"
+        required
+        ng-disabled="!model.vehicle.isBrandModelManual && vehicleTypeDetected"
+        ng-change="vehicleTypeChanged() || resetPremium()"
+        ng-model="model.vehicle.typeId" 
+        ng-options="item.key as item.value for item in vehicleTypes">
+    <option value="" ng-show="false">---</option>
+</select>

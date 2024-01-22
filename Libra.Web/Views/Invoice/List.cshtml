@@ -1,0 +1,223 @@
+﻿@using Libra.Contract
+@{
+    var isSecondary = Model.ModuleId == NavigationModule.SECONDARY_INVOICES;
+    var isSecondaryString = isSecondary.ToString().ToLower();
+    var readOnly = Model.ReadOnly;
+    ViewBag.Module = Model.ModuleId;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string) ViewBag.Module].Title);
+}
+
+@model InvoiceListModel
+
+<div ng-controller="invoicesListController" ng-init="init(@isSecondaryString)">
+
+    <libra-issues source="model.issues"></libra-issues>
+
+    @if (!isSecondary && !readOnly)
+    {
+        <button class="btn btn-primary" ng-click="syncronize()">
+            <span class="fa fa-refresh"></span>
+            @Html.Translate("INVOICE_LIST_SYNC_BUTTON_TEXT")
+        </button>
+    }
+
+    <button class="btn btn-primary" ng-click="selectAll()">
+        <span class="fa fa-check-square-o"></span>
+        @Html.Translate("INVOICE_LIST_SELECT_BUTTON_TEXT")
+    </button>
+    @if (!readOnly)
+    {
+        <button class="btn btn-primary" ng-click="createAct()" ng-disabled="!anyInvoiceSelected()">
+            <span class="fa fa-file-o"></span>
+            @Html.Translate("INVOICE_LIST_CREATE_BUTTON_TEXT")
+        </button>
+
+        <button class="btn btn-primary" ng-click="addToActDialog()" ng-disabled="!anyInvoiceSelected()">
+            <span class="fa fa-plus"></span>
+            @Html.Translate("INVOICE_LIST_ADD_BUTTON_TEXT")
+        </button>
+    }
+
+    <button class="btn btn-primary" ng-click="hideInvoicesDialog()" ng-disabled="!anyInvoiceSelected()">
+        <span class="fa fa-remove"></span>
+        @Html.Translate("HIDE_SELECTED_COMISSIONFREE_INVOICES_BUTTON_TEXT")
+    </button>
+
+    <div id="hideInvoicesDialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title">@Html.Translate("SURE_TO_HIDE_INVOICES_TEXT")</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @Html.Translate("CANCEL_BUTTON_TEXT")
+                    </button>
+                    <button class="btn btn-primary" ng-click="hideSelectedInvoices()">
+                        <span class="fa fa-ban"></span>
+                        @Html.Translate("HIDE_BUTTON_TEXT")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addToActDialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">@Html.Translate("INVOICE_LIST_ADD_BUTTON_TEXT")</h4>
+                </div>
+                <div class="modal-body">
+                    <label>@Html.Translate("INVOICE_LIST_ADD_ACT_NUMBER")</label>
+                    <input class="form-control uppercase input-sm table-input-lg"
+                           autocomplete="off"
+                           id="ActNumber"
+                           name="ActNumber"
+                           type="text"
+                           maxlength="50"
+                           ng-model="actId"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="fa fa-times"></span>
+                        @Html.Translate("CANCEL_BUTTON_TEXT")
+                    </button>
+                    <button class="btn btn-primary" ng-disabled="!actId" ng-click="addToAct()">
+                        <span class="fa fa-plus"></span>
+                        @Html.Translate("INVOICE_LIST_ADD_ACT_BUTTON_TEXT")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_STATUS")</label>
+        <select class="form-control input-sm"
+                id="Status"
+                name="Status"
+                ng-change="reload()"
+                ng-model="filter.status"
+                ng-options="item.key as item.value for item in @(Html.Classifier<InvoiceStatus>(true))">
+        </select>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_PRODUCT")</label>
+        <select class="form-control input-sm"
+                id="PRODUCT"
+                name="PRODUCT"
+                ng-change="reload()"
+                ng-model="filter.Product"
+                ng-options="item.key as item.value for item in @(Html.Classifier<Product>(true))">
+        </select>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_NUMBER")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Invoice"
+               name="Invoice"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.invoice"/>
+    </div>
+
+    <div class="form-group col-sm-3">
+        <label>@Html.Translate("LIST_POLICY")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Policy"
+               name="Policy"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.policy"/>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_MEDIATOR")</label>
+        <input class="form-control uppercase input-sm"
+               autocomplete="off"
+               id="Mediator"
+               name="Mediator"
+               type="text"
+               maxlength="50"
+               ng-change="waitAndReload()"
+               ng-model="filter.agent"/>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_CREATE_DATE")</label>
+        <div>
+            <input class="form-control date-control input-sm input-half"
+                   data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"
+                   id="CreateDateFrom"
+                   name="CreateDateFrom"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.createDateFrom"/>
+            <input class="form-control date-control input-sm input-half"
+                   data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"
+                   id="CreateDateTill"
+                   name="CreateDateTill"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.createDateTill"/>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_PAY_DATE")</label>
+        <div>
+            <input class="form-control date-control input-sm input-half"
+                   data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"
+                   id="PayDateFrom"
+                   name="PayDateFrom"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payDateFrom"/>
+            <input class="form-control date-control input-sm input-half"
+                   data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"
+                   id="PayDateTill"
+                   name="PayDateTill"
+                   type="text"
+                   ng-change="reload()"
+                   ng-model="filter.payDateTill"/>
+        </div>
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>@Html.Translate("INVOICE_LIST_PAYOUT_TYPE")</label>
+        <select class="form-control input-sm"
+                id="PAYOUTTYPE"
+                name="PAYOUTTYPE"
+                ng-change="reload()"
+                ng-model="filter.PayoutType"
+                ng-options="item.key as item.value for item in @(Html.Classifier<PayoutType>(true))">
+        </select>
+    </div>
+
+    @Html.Partial("_PaginatedInvoices")
+</div>

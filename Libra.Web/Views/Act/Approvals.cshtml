@@ -1,0 +1,179 @@
+﻿@using Libra.Contract
+
+@{
+    ViewBag.Module = NavigationModule.APPROVALS;
+    ViewBag.Title = Html.Translate(Navigation.Modules[(string)ViewBag.Module].Title);
+    ViewBag.Module = NavigationModule.ACTS;
+}
+
+    <div ng-controller="actApprovalsController" ng-init="init()">
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("ACT_LIST_NUMBER")</label>
+            <input class="form-control uppercase input-sm"
+                   autocomplete="off"
+                   id="ActNumber"
+                   name="ActNumber"
+                   type="text"
+                   maxlength="50"
+                   ng-change="waitAndReload()"
+                   ng-model="filter.ActNumber" />
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("LIST_POLICY")</label>
+            <input class="form-control uppercase input-sm"
+                   autocomplete="off"
+                   id="Policy"
+                   name="Policy"
+                   type="text"
+                   maxlength="50"
+                    ng-change="policyFilterChanged()"
+                   ng-model="filter.policynumber" />
+        </div>
+
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("ACT_LIST_STATUS")</label>
+            <select class="form-control input-sm"
+                    id="Status"
+                    name="Status"
+                    ng-change="waitAndReload()"
+                    ng-model="filter.status"
+                    ng-options="item.key as item.value for item in @(Html.Classifier<ActStatus>(true))"></select>
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("ACT_LIST_CREATE_DATE")</label>
+            <div>
+                <input class="form-control date-control input-sm input-half"
+                       @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                       datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                       id="CreateDateFrom"
+                       name="CreateDateFrom"
+                       type="text"
+                       ng-change="reload()"
+                       ng-model="filter.createDateFrom" />
+                <input class="form-control date-control input-sm input-half"
+                       @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                       datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                       id="CreateDateTill"
+                       name="CreateDateTill"
+                       type="text"
+                       ng-change="reload()"
+                       ng-model="filter.createDateTill" />
+            </div>
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("ACT_LIST_CREATOR")</label>
+            <input class="form-control uppercase input-sm"
+                   autocomplete="off"
+                   id="Creator"
+                   name="Creator"
+                   type="text"
+                   maxlength="50"
+                   ng-change="waitAndReload()"
+                   ng-model="filter.creator" />
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label>@Html.Translate("ACT_LIST_APPROVAL_DATE")</label>
+            <div>
+                <input class="form-control date-control input-sm input-half"
+                       @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                       datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                       id="ApprovalDateFrom"
+                       name="ApprovalDateFrom"
+                       type="text"
+                       ng-change="reload()"
+                       ng-model="filter.approveDateFrom" />
+                <input class="form-control date-control input-sm input-half"
+                       @*data-provide="datepicker"
+                   data-date-autoclose="true"
+                   data-date-format="@Constants.DATE_FORMAT_JS"*@
+                       datetime="dd.MM.yyyy" datetime-separator=",.-/" min="Jan 1, 1901" datetime-model="yyyy-MM-ddTHH:mm:ss"
+                       id="ApproveDateTill"
+                       name="ApproveDateTill"
+                       type="text"
+                       ng-change="reload()"
+                       ng-model="filter.approveDateTill" />
+            </div>
+        </div>
+
+        <table ng-cloak class="table table-striped table-hover selectable-list">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th ng-click="sort('id')">
+                    @Html.Translate("ACT_LIST_NUMBER")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('statusText')">
+                    @Html.Translate("ACT_LIST_STATUS")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='statusText'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('createDate')">
+                    @Html.Translate("ACT_LIST_CREATE_DATE")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='createDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('amount')">
+                    @Html.Translate("ACT_LIST_AMOUNT")
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='amount'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('creator')">
+                    @Html.Translate("ACT_LIST_CREATOR")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='creator'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('approverFullname')">
+                    @Html.Translate("APPROVER_FULLNAME")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='approverFullname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('approvalDate')">
+                    @Html.Translate("ACT_LIST_APPROVAL_DATE")
+                    <span class="glyphicon sort-icon" ng-show="sortKey=='approvalDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr @*ng-repeat="act in model.acts"*@ ng-click="open(act)" dir-paginate="act in model.acts | orderBy:sortKey:reverse | filter:search|itemsPerPage:50">
+                    <td>
+                        <span ng-if="act.isApproved" class="fa fa-check-circle text-success"></span>
+                        <span ng-if="act.isApproved === false" class="fa fa-times-circle text-danger"></span>
+                        <span ng-if="act.isApproved === null" class="fa fa-question-circle text-warning"></span>
+                    </td>
+                        <td ng-if="act.status!=1">{{act.id}}</td>
+                <td ng-if=" act.status==1" style="color:yellow">{{act.id}}</td>
+
+                <td ng-if="act.status!=1">{{act.statusText}}</td>
+                <td ng-if=" act.status==1" style="color:yellow">{{act.statusText}}</td>
+
+                <td ng-if="act.status!=1">{{act.createDate | libraDate}}</td>
+                <td ng-if="act.status==1" style="color:yellow">{{act.createDate | libraDate}}</td>
+
+                <td ng-if="act.status!=1">{{act.amount | libraMoney}}</td>
+                <td ng-if=" act.status==1" style="color:yellow">{{act.amount | libraMoney}}</td>
+
+                <td ng-if="act.status!=1">{{act.creator}}</td>
+                <td ng-if=" act.status==1" style="color:yellow">{{act.creator}}</td>
+
+                <td ng-if="act.status!=1">{{act.approverFullname}}</td>
+                <td ng-if=" act.status==1" style="color:yellow">{{act.approverFullname}}</td>
+
+                <td ng-if="act.status!=1">{{act.approvalDate | libraDate}}</td>
+                <td ng-if="act.status==1" style="color:yellow">{{act.approvalDate | libraDate}}</td>
+         	</tr>
+            </tbody>
+        </table>
+
+        <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+        </dir-pagination-controls>
+    </div>

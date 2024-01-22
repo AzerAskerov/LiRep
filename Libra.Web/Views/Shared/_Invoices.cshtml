@@ -1,0 +1,143 @@
+﻿<input type="hidden" ng-model="model.createddate" value="{{model.createddate}}" />
+
+<table ng-cloak class="table table-striped table-hover extended-list">
+
+    <thead>
+    <tr>
+        <th style="width:25px"></th>
+        <th ng-click="sort('policyNumber')">
+            @Html.Translate("INVOICE_LIST_POLICY_NUMBER")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='policyNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('number')">
+            @Html.Translate("INVOICE_LIST_NUMBER")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='number'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('product')">
+            @Html.Translate("INVOICE_LIST_PRODUCT")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='product'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('policyHolder')">
+            @Html.Translate("INVOICE_LIST_POLICY_HOLDER")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='policyHolder'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('creator')">
+            @Html.Translate("INVOICE_LIST_AGENT")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='creator'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('premium')">
+            @Html.Translate("INVOICE_LIST_PREMIUM")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='premium'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th ng-click="sort('commission')">
+            @Html.Translate("INVOICE_LIST_COMMISSION")
+            <span class="glyphicon sort-icon" ng-show="sortKey=='commission'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th style="width:25px" ng-if="model.status === 0"></th>
+    </tr>
+    </thead>
+    <tbody ng-click="open(act)" dir-paginate="invoice in model.invoices | orderBy:sortKey:reverse | itemsPerPage:50">
+        <tr class="main" ng-style="{'color': isCommissionChanged(invoice)  ?'#FFFF00' : ''}" ng-class="{ 'selected': !model.id && invoice.selected }">
+            <td style="width:25px" ng-if="!invoice.expanded" ng-click="invoice.expanded = !invoice.expanded"><span class="pointer fa fa-plus-square"></span></td>
+            <td style="width:25px" ng-if="invoice.expanded" ng-click="invoice.expanded = !invoice.expanded"><span class="pointer fa fa-minus-square"></span></td>
+
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.policyNumber}}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.number}}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{ invoice.product }}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.policyHolder}}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.creator}}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.premium | libraMoney}}</td>
+            <td ng-click="invoice.selected = !invoice.selected">{{invoice.commission | libraCommission}}</td>
+            <td style="width:25px" ng-if="model.status === 0" ng-click="deleteInvoice(invoice)"><span class="pointer fa fa-trash-o pointer"></span></td>
+        </tr>
+        <tr ng-show="invoice.expanded">
+            <td class="row-details" colspan="6">
+                <div class="col-xs-12 details-header">
+                    <span class="col-xs-2">&nbsp;</span>
+                    <span class="col-xs-2">@Html.Translate("INVOICE_LIST_TOTAL_COMMISSION")</span>
+                    <span class="col-xs-2">@Html.Translate("INVOICE_LIST_PAID_COMMISSION")</span>
+                    <span class="col-xs-2">@Html.Translate("INVOICE_LIST_UNPAID_COMMISSION")</span>
+                    <span class="col-xs-2">&nbsp;</span>
+                    <span class="col-xs-2">&nbsp;</span>
+                </div>
+                <ul class="list-group details-body">
+                    <li class="col-xs-12 list-group-item" ng-repeat="commission in invoice.commissions">
+                        <div class="col-xs-2 commission-type">{{ commission.typeText }}</div>
+                        <div class="col-xs-2">{{ commission.totalAmount | libraCommission }}</div>
+                        <div class="col-xs-2">{{ commission.paidAmount | libraCommission }}</div>
+                        <div class="col-xs-2">{{ commission.unpaidAmount | libraCommission }}</div>
+                        <div class="col-xs-2">
+                            <span class="input-group input-group-sm" ng-if="model.id">
+                                <span class="input-group-addon">%</span>
+                                <input class="form-control"
+                                       style="width: 50px;"
+                                       id="CommissionPercent"
+                                       name="CommissionPercent"
+                                       required="required"
+                                       ng-model="commission.customPercent"
+                                       ng-change="commissionPercentChanged(commission,invoice)"
+                                       ng-readonly="!model.customCommissions || isPredefinedCommission(invoice)"
+                                       libra-max-number="100"
+                                       libra-min-number="0" />
+                            </span>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="input-group input-group-sm" ng-if="model.id">
+                                <span class="input-group-addon">₼</span>
+                                <input class="form-control"
+                                       style="width: 50px;"
+                                       libra-money=""
+                                       id="Commission"
+                                       name="Commission"
+                                       required="required"
+                                       ng-model="commission.customAmount"
+                                       ng-change="commissionChanged(commission,invoice)"
+                                       ng-readonly="!model.customCommissions || isPredefinedCommission(invoice)"
+                                       libra-max-number="invoice.premium"
+                                       libra-min-number="0" />
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="form-group">&nbsp;</div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_POLICY_NUMBER")</label>
+                    <div>{{ invoice.policyNumber }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_PRODUCT")</label>
+                    <div>{{ invoice.product }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_BRAND")</label>
+                    <div>{{ invoice.brand }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_BENEFICIARY")</label>
+                    <div>{{ invoice.beneficiary }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_PAYABLE_PREMIUM")</label>
+                    <div>{{ invoice.payablePremium | libraMoney }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_PAID_PREMIUM")</label>
+                    <div>{{ invoice.paidPremium | libraMoney }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_UNPAID_PREMIUM")</label>
+                    <div>{{ invoice.unpaidPremium | libraMoney }}</div>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>@Html.Translate("INVOICE_LIST_WITHHELD_COMMISSION")</label>
+                    <div>{{ invoice.withheldCommission | libraMoney }}</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<dir-pagination-controls 
+    max-size="10" 
+    direction-links="true" 
+    boundary-links="true">
+</dir-pagination-controls>

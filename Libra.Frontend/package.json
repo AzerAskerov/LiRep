@@ -1,0 +1,46 @@
+{
+  "name": "Libra",
+  "version": "1.0.0",
+  "scripts": {
+    "build:dev": "webpack --config webpack.config-dev.js --progress --display-error-details",
+    "build:prod": "webpack --config webpack.config-prod.js --progress --display-error-details"
+  },
+  "dependencies": {
+    "angular": "^1.8.2",
+    "angular-animate": "1.5.9",
+    "angular-datetime-input": "^5.3.0",
+    "angular-messages": "1.5.9",
+    "angular-sanitize": "1.5.9",
+    "angular-strap": "2.3.9",
+    "animate.css": "3.5.1",
+    "bootstrap": "3.3.7",
+    "bootstrap-datepicker": "1.6.4",
+    "bootstrap-sass": "3.3.7",
+    "bootstrap-select": "^1.13.18",
+    "font-awesome": "4.7.0",
+    "jquery": "2.2.2",
+    "jquery-ui": "1.12.0",
+    "lodash": "^4.17.21",
+    "ng-file-upload": "^12.2.13",
+    "ts-xlsx": "0.0.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "6.5.1",
+    "css-loader": "0.25.0",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.9.0",
+    "gulp-sass": "^3.1.0",
+    "html-loader": "0.4.4",
+    "node-sass": "4.7.2",
+    "postcss-loader": "1.0.0",
+    "resolve-url-loader": "^1.6.0",
+    "sass-loader": "4.0.2",
+    "script-loader": "0.7.0",
+    "style-loader": "0.13.1",
+    "ts-loader": "0.9.5",
+    "typescript": "2.0.3",
+    "webpack": "1.13.2",
+    "webpack-cleanup-plugin": "0.4.1",
+    "webpack-stream": "3.2.0"
+  }
+}

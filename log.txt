@@ -1,0 +1,12 @@
+.cshrc
+.fossil
+.fslckout
+.klogin
+.login
+.profile
+.shrc
+.ssh
+Libra
+fossil
+fossil_clone
+log.txt
